@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 11 ) Desigining Splash Screen-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_splash_screen"
+    tools:context=".activity.SplashScreenActivity">
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/app_icon"
+        android:src="@drawable/app_icon"/>
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_icon"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name"
+        android:textColor="@color/color_splash_app_name"
+        android:contentDescription="@string/app_icon_name"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/app_name_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_name"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name_description"
+        android:textColor="@color/color_splash_app_name"
+        android:contentDescription="@string/app_name_description"
+        android:textSize="12sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--  TODO 13 ) Defining Splash Screen's colors -->
+    <color name="color_splash_screen">#fb9700</color>
+    <color name="color_splash_app_name">#FFFFFF</color>
+
+    <!-- TODO 15 ) Defining Info Screen's colors -->
+    <color name="info_color_primary_text">#FFFFFF</color>
+    <color name="info_color_secondary_text">#816f57</color>
+
+    <!-- TODO 19 ) Defining Main Screen's color -->
+    <color name="main_color_primary">#fb9700</color>
+
+    <!-- TODO 33 ) Defining Bottom Navigation Bar's color-->
+    <color name="bottom_navigation_bar_background_color">#fb9700</color>
+
+</resources>

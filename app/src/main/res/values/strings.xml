@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">FindL</string>
+
+    <!-- TODO 6 ) Defining all types of Google Map from https://developers.google.com/places/web-service/supported_types-->
+    <string name="accounting">Accounting</string>
+    <string name="airport">Airport</string>
+    <string name="amusement_park">Amusement Park</string>
+    <string name="aquarium">Aquarium</string>
+    <string name="art_gallery">Art Gallery</string>
+    <string name="atm">ATM</string>
+    <string name="bakery">Bakery</string>
+    <string name="bank">Bank</string>
+    <string name="bar">Bar</string>
+    <string name="beauty_salon">Beauty Salon</string>
+    <string name="bicycle_store">Bicycle Store</string>
+    <string name="book_store">Book Store</string>
+    <string name="bowling_alley">Bowling Alley</string>
+    <string name="bus_station">Bus Station</string>
+    <string name="cafe">Cafe</string>
+    <string name="campground">Campground</string>
+    <string name="car_dealer">Car Dealer</string>
+    <string name="car_rental">Car Rental</string>
+    <string name="car_repair">Car Repair</string>
+    <string name="car_wash">Car Wash</string>
+    <string name="casino">Casino</string>
+    <string name="cemetery">Cemetery</string>
+    <string name="church">Church</string>
+    <string name="city_hall">City Hall</string>
+    <string name="clothing_store">Clothing Store</string>
+    <string name="convenience_store">Convenience Store</string>
+    <string name="courthouse">Courthouse</string>
+    <string name="dentist">Dentist</string>
+    <string name="department_store">Department Store</string>
+    <string name="doctor">Doctor</string>
+    <string name="electrician">Electrician</string>
+    <string name="electronics_store">Electronics Store</string>
+    <string name="embassy">Embassy</string>
+    <string name="fire_station">Fire Station</string>
+    <string name="florist">Florist</string>
+    <string name="funeral_home">Funeral Home</string>
+    <string name="furniture_store">Furniture Store</string>
+    <string name="gas_station">Gas Station</string>
+    <string name="gym">Gym</string>
+    <string name="hair_care">Hair Care</string>
+    <string name="hardware_store">Hardware Store</string>
+    <string name="hindu_temple">Hindu Temple</string>
+    <string name="home_goods_store">Home Goods Store</string>
+    <string name="hospital">Hospital</string>
+    <string name="insurance_agency">Insurance Agency</string>
+    <string name="jewelry_store">Jewelry Store</string>
+    <string name="laundry">Laundry</string>
+    <string name="lawyer">Lawyer</string>
+    <string name="library">Library</string>
+    <string name="liquor_store">Liquor Store</string>
+    <string name="local_government_office">Local Government Office</string>
+    <string name="locksmith">Locksmith</string>
+    <string name="lodging">Lodging</string>
+    <string name="meal_delivery">Meal Delivery</string>
+    <string name="meal_takeaway">Meal Takeaway</string>
+    <string name="mosque">Mosque</string>
+    <string name="movie_rental">Movie Rental</string>
+    <string name="movie_theater">Movie Theater</string>
+    <string name="moving_company">Moving Company</string>
+    <string name="museum">Museum</string>
+    <string name="night_club">Night Club</string>
+    <string name="painter">Painter</string>
+    <string name="park">Park</string>
+    <string name="parking">Parking</string>
+    <string name="pet_store">Pet Store</string>
+    <string name="pharmacy">Pharmacy</string>
+    <string name="physiotherapist">Physiotherapist</string>
+    <string name="plumber">Plumber</string>
+    <string name="police">Police</string>
+    <string name="post_office">Post Office</string>
+    <string name="real_estate_agency">Real Estate Agency</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="roofing_contractor">Roofing Contractor</string>
+    <string name="rv_park">RV Park</string>
+    <string name="school">School</string>
+    <string name="shopping_mall">Shopping Mall</string>
+    <string name="spa">Spa</string>
+    <string name="stadium">Stadium</string>
+    <string name="storage">Storage</string>
+    <string name="store">Store</string>
+    <string name="subway_station">Subway Station</string>
+    <string name="supermarket">Supermarket</string>
+    <string name="synagogue">Synagogue</string>
+    <string name="taxi_stand">Taxi Stand</string>
+    <string name="train_station">Train Station</string>
+    <string name="transit_station">Transit Stand</string>
+    <string name="travel_agency">Travel Agency</string>
+    <string name="veterinary_care">Veterinary Care</string>
+    <string name="zoo">Zoo</string>
+
+    <!--  TODO 12 ) Defining Splash Screen's Strings -->
+    <string name="app_icon">FindL Icon Image</string>
+    <string name="app_icon_name">FindL</string>
+    <string name="app_name_description">Find Location Near Me</string>
+
+
+    <!-- TODO 16 ) Defining Info Screen's Strings-->
+    <string name="info_version_text">Version 1.0</string>
+    <string name="info_developed_by_text">Sercan Noyan Germiyanoğlu</string>
+
+
+</resources>

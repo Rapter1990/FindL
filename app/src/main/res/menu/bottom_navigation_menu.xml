@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- TODO 7 ) Defining Bottom Navigation Bar Icons -->
+    <item
+        android:id="@+id/ic_homepage"
+        android:icon="@drawable/ic_homepage"
+        android:title="Home"
+        />
+
+    <item
+        android:id="@+id/ic_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorite"
+        />
+
+    <item
+        android:id="@+id/ic_contract"
+        android:icon="@drawable/ic_contract"
+        android:title="Contract"
+        />
+
+    <item
+        android:id="@+id/ic_info"
+        android:icon="@drawable/ic_info"
+        android:title="Info"
+        />
+
+    <item
+        android:id="@+id/ic_exit"
+        android:icon="@drawable/ic_exit"
+        android:title="Exit"
+        />
+
+</menu>

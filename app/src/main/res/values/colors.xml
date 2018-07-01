@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--  TODO 13 ) Defining Splash Screen's colors -->
-    <color name="color_splash_screen">#fb9700</color>
+    <color name="color_splash_screen">#beb9b1</color>
     <color name="color_splash_app_name">#FFFFFF</color>
 
     <!-- TODO 15 ) Defining Info Screen's colors -->

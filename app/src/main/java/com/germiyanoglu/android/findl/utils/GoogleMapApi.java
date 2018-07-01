@@ -23,6 +23,6 @@ public class GoogleMapApi {
     public static final String LOCATION_DETAIL_TAG = "details";
 
 
-    // TODO : 90 ) --------------------------CONTINUE-------------------------------------------------
+
 
 }

@@ -50,4 +50,14 @@
         android:textColor="@color/info_color_secondary_text"
         android:textSize="16sp"/>
 
+    <!-- TODO : 90 ) Adding Bottom Navigation Bar underneath main_screen_linearlayout-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_screen_linearlayout">
+
+        <include layout="@layout/layout_bottom_navigation_main" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

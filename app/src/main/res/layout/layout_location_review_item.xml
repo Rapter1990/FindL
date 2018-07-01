@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO 98 ) Designing Location Reviews -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/location_item_background_color"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/location_review_user_profile_image_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_default_user_profile_image"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#ffffff"/>
+
+
+    <LinearLayout
+        android:id="@+id/location_review_rating_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/location_review_user_profile_image_view"
+        android:layout_toRightOf="@id/location_review_user_profile_image_view">
+
+        <TextView
+            android:id="@+id/location_review_user_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/location_review_item_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="UserName" />
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/location_review_user_rating"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="end" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/location_review_user_rating_time_age_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/location_review_user_profile_image_view"
+        android:layout_toRightOf="@id/location_review_user_profile_image_view"
+        android:layout_below="@+id/location_review_rating_block"
+        android:textColor="@color/location_review_item_color"
+        android:textSize="14sp"
+        android:layout_marginBottom="15dp"
+        tools:text="User Review Date Time" />
+
+    <TextView
+        android:id="@+id/user_rating_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location_review_user_rating_time_age_text_view"
+        android:layout_toEndOf="@id/location_review_user_profile_image_view"
+        android:layout_toRightOf="@id/location_review_user_profile_image_view"
+        android:textColor="@color/location_review_item_color"
+        android:textSize="14sp"
+        tools:text="User Review" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/user_rating_description"
+        android:layout_marginTop="16dp"
+        android:background="@color/location_review_item_line_color" />
+</RelativeLayout>

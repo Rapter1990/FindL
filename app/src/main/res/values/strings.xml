@@ -103,4 +103,8 @@
     <string name="info_developed_by_text">Sercan Noyan Germiyanoğlu</string>
 
 
+    <!-- TODO 97 ) Defining Location's Item Strings -->
+    <string name="location_icon">Location Icon</string>
+
+
 </resources>

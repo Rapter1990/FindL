@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO 95 ) Designing location item to be shown in the list -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/location_item_background_color">
+
+    <ImageView
+        android:id="@+id/location_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/location_icon"
+        android:src="@drawable/ic_location_white_icon"/>
+
+    <TextView
+        android:id="@+id/location_distance_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/location_item_color"
+        android:textSize="12sp"
+        tools:text="~ 1.0 Km" />
+
+
+    <LinearLayout
+        android:id="@+id/location_type_rating_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/location_icon"
+        android:layout_toRightOf="@id/location_icon">
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:textColor="@color/location_item_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Location Type"/>
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:id="@+id/user_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/location_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/location_icon"
+        android:layout_toRightOf="@id/location_icon"
+        android:layout_below="@+id/location_type_rating_block"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/location_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/location_item_color"
+            android:textSize="14sp"
+            tools:text="Location Address"/>
+
+        <TextView
+            android:id="@+id/location_open_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/location_item_color"
+            android:textSize="14sp"
+            tools:text="Locaiton Status"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/location_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/location_detail_container"
+        android:layout_marginTop="16dp"
+        android:background="@color/location_item_line_color"/>
+
+</RelativeLayout>

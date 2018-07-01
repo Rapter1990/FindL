@@ -18,4 +18,14 @@
     <!-- TODO 33 ) Defining Bottom Navigation Bar's color-->
     <color name="bottom_navigation_bar_background_color">#fb9700</color>
 
+    <!-- TODO 96 ) Defining Location's Item color -->
+    <color name="location_item_background_color">#ff9b00</color>
+    <color name="location_item_color">#FFFFFF</color>
+    <color name="location_item_line_color">#FFFFFF</color>
+
+    <!-- TODO 96 ) Defining Location's Review color -->
+    <color name="location_review_item_background_color">#ff9b00</color>
+    <color name="location_review_item_color">#FFFFFF</color>
+    <color name="location_review_item_line_color">#FFFFFF</color>
+
 </resources>

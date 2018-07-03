@@ -23,6 +23,13 @@ public class GoogleMapApi {
     public static final String LOCATION_DETAIL_TAG = "details";
 
 
+    public static final String CURRENT_LOCATION_DATA = "current_location_data";
+    public static final String CURRENT_LOCATION_SHARED_PREFERENCE_KEY = "current_location_shared_preference_key";
+    public static final String LOCATION_ID_TEXT = "location_id";
+    public static final String LOCATION_NAME_EXTRA_TEXT = "location_name_extra_text";
+    public static final String LOCATION_TYPE_EXTRA_TEXT = "location_type_extra_text";
+    public static final String CURRENT_LOCATION_USER_RATING = "current_location_user_rating";
+
 
 
 }

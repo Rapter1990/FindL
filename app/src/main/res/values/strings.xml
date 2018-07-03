@@ -106,5 +106,35 @@
     <!-- TODO 97 ) Defining Location's Item Strings -->
     <string name="location_icon">Location Icon</string>
 
+    <!-- TODO : 108 ) Defining Location's Item Icon String -->
+    <string name="location_icon_name">Location Icon Name</string>
+
+    <!-- TODO : 120 ) Defining Location's Status -->
+    <string name="open_now">Open Now</string>
+    <string name="closed">Closed</string>
+
+    <!-- TODO : 132 ) Designing User Review Screen-->
+    <string name="no_review_showed">No Review Showed</string>
+
+    <!-- TODO : 135 ) Defining Location Information Detail String-->
+    <string name="phone">Phone Call</string>
+    <string name="website">Open Site</string>
+    <string name="favourite">Favorite</string>
+    <string name="small_location_icon">Small Location Icon</string>
+    <string name="small_call_icon">Small Call Icon</string>
+    <string name="small_website_icon">Small Website Icon</string>
+    <string name="small_location_status_icon">Small Location Status Icon</string>
+
+    <!-- TODO : 174 ) Defining Location Information About Fragment String -->
+    <string name="no_phone_number">Phone number which you try to call is invalid</string>
+    <string name="no_website">Website which you try to open is invalid</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="permission_title">Permission</string>
+    <string name="call_permission_message">Do you want to give a permission for a call</string>
+    <string name="add_location_favorite">Location is added to favortites</string>
+    <string name="delete_location_favorite">Location is removed from favorites</string>
+    <string name="location_permission_title">Location Permission</string>
+    <string name="location_permission_description">Do you want to allow location to access your phone?</string>
 
 </resources>

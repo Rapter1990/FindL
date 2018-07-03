@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO : 131 ) Designing User Review Screen -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.germiyanoglu.android.findl.activity.LocationReviewDetail">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/user_location_review_recyleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/user_location_review_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableTop="@drawable/ic_cloud_off_black"
+        android:gravity="center"
+        android:text="@string/no_review_showed"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:visibility="gone"/>
+</RelativeLayout>

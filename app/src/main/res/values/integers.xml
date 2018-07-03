@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TODO : 139 ) Defining girdlayout span for location adapter in Main Activity -->
+    <integer name="gridlayout_span">4</integer>
+
+    <!-- TODO : 154 ) Defining girdlayout span for location adapter in LocationUserReview -->
+    <integer name="gridlayout_review_span">4</integer>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO : 105 ) Designing location item displaying in Main Activity-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/location_icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/location_icon_background"
+        android:contentDescription="@string/location_icon_name"
+        android:padding="8dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/location_icon_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/location_main_item_line_color"
+        android:textSize="16sp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        tools:text="Google Office"/>
+
+</LinearLayout>

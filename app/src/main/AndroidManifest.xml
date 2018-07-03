@@ -3,11 +3,11 @@
     package="com.germiyanoglu.android.findl">
 
     <!-- TODO : 86 ) Defining permissions -->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".utils.AppController"
@@ -17,18 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.InfoActivity"/>
-
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.InfoActivity" />
+        <activity android:name=".activity.LocationReviewDetail" />
+        <activity android:name=".activity.LocationListOnMapActivity" />
+        <activity android:name=".activity.LocationSearchResultActivity"></activity>
     </application>
 
 </manifest>

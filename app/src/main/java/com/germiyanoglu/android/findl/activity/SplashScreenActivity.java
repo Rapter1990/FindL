@@ -1,12 +1,15 @@
 package com.germiyanoglu.android.findl.activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -19,6 +22,7 @@ import com.germiyanoglu.android.findl.R;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 import com.germiyanoglu.android.findl.utils.UtilMethods;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -31,6 +35,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -97,7 +102,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         buildGoogleApiClient();
 
         // TODO 18 ) Calling openMainActivity
-        openMainActivity();
+        //openMainActivity();
 
 
     }
@@ -141,28 +146,41 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         mCurrentLocationRequest.setFastestInterval(5000);
         mCurrentLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        // TODO : 206 ) Determining location
-        mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
-                .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // TODO : 206 ) Checking whether location's permission is allowed or not.
+            if (checkSelfPermission(UtilMethods.getAccessFineLocationPermission())
+                    != PackageManager.PERMISSION_GRANTED) {
+                // TODO : 207 ) Calling shouldShowRequestPermissionRationale to see if the user checked Never ask again or not.
+                if (shouldShowRequestPermissionRationale(
+                        UtilMethods.getAccessFineLocationPermission())) {
+                    // TODO : 208 ) Openining AlertDialog to give a permission
+                    new AlertDialog.Builder(SplashScreenActivity.this)
+                            .setTitle(R.string.location_permission_title)
+                            .setMessage(R.string.location_permission_description)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ActivityCompat.requestPermissions(SplashScreenActivity.this, new String[]{
+                                                    UtilMethods.getAccessFineLocationPermission()},
+                                            LOCATION_PERMISSION_CODE);
+                                }
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                        // TODO : 214 ) --------------------------------------------------------------------
-
-
-
-                    }
-                }).addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-
-
-
-
-                    }
-
-        });
+                                }
+                            }).show();
+                } else
+                    // TODO : 209 ) Requestng to give a permission for calling
+                    requestPermissions(new String[]{UtilMethods.getAccessFineLocationPermission()},
+                            LOCATION_PERMISSION_CODE);
+            } else
+                // TODO : 210 ) Calling Location
+                enableLocation();
+        } else
+            // TODO : 211 ) Calling Location
+            enableLocation();
 
 
     }
@@ -231,5 +249,66 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         };
     }
 
+    // TODO : 214 ) Enabling location
+    private void enableLocation() {
 
+        mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
+                .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+
+                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return;
+                        }
+                        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+
+                        // TODO : 215 ) Calling openMainActivity
+                        openMainActivity();
+
+                        // TODO : 216 ) Stoping SplashScreenActivity
+                        finish();
+
+
+                    }
+                }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                int statusCode = ((ApiException) e).getStatusCode();
+
+                switch (statusCode) {
+
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+
+
+                        break;
+
+
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        break;
+
+
+                }
+
+
+            }
+
+        });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == LOCATION_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                enableLocation();
+        }
+    }
 }

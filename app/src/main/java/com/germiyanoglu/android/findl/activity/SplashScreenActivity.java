@@ -297,7 +297,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
                             // result in onActivityResult().
                             ResolvableApiException rae = (ResolvableApiException) e;
                             rae.startResolutionForResult(SplashScreenActivity.this, LOCATION_REQUEST_CODE);
-                        } catch (IntentSender.SendIntentException sie) {
+                        } catch (IntentSender.SendIntentException sendEx) {
                             Log.d(TAG, "PendingIntent unable to execute request.");
                         }
 

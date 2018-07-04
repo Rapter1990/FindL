@@ -357,14 +357,14 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(SplashScreenActivity.this, new String[]{
-                                                UtilMethods.getAccessFineLocationPermission()},
-                                        LOCATION_PERMISSION_CODE);
+
+                                enableLocation();
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                 finish();
                             }
                         }).show();

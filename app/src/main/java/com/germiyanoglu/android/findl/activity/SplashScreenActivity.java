@@ -25,6 +25,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -168,7 +169,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
                             .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                                        finish();
                                 }
                             }).show();
                 } else
@@ -281,15 +282,26 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
             @Override
             public void onFailure(@NonNull Exception e) {
 
+                // TODO : 217 ) --------------------------------------------------------------------------
+
                 int statusCode = ((ApiException) e).getStatusCode();
 
                 switch (statusCode) {
 
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
 
+                        Log.d(TAG, "Location settings are not satisfied. Attempting to upgrade " +
+                                "location settings ");
+                        try {
+                            // Show the dialog by calling startResolutionForResult(), and check the
+                            // result in onActivityResult().
+                            ResolvableApiException rae = (ResolvableApiException) e;
+                            rae.startResolutionForResult(SplashScreenActivity.this, LOCATION_REQUEST_CODE);
+                        } catch (IntentSender.SendIntentException sie) {
+                            Log.d(TAG, "PendingIntent unable to execute request.");
+                        }
 
                         break;
-
 
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                         break;
@@ -303,12 +315,62 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         });
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 enableLocation();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED) {
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+
+                //Start HomeScreenActivity
+                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+
+                //Stop SplashScreenActivity
+                finish();
+
+            } else {
+
+                new AlertDialog.Builder(SplashScreenActivity.this)
+                        .setTitle(R.string.location_permission_title)
+                        .setMessage(R.string.location_permission_description)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(SplashScreenActivity.this, new String[]{
+                                                UtilMethods.getAccessFineLocationPermission()},
+                                        LOCATION_PERMISSION_CODE);
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        }).show();
+
+            }
+        }
+
     }
 }

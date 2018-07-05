@@ -12,6 +12,10 @@ public class UserLocationRating implements Parcelable {
     private String mUserRatingDateTime;
     private String mAuthorReviewText;
 
+    public UserLocationRating(){
+
+    }
+
     public UserLocationRating(String mUserName, String mUserProfilePictureUrl,
                               Double mUserPlaceRating, String mUserRatingDateTime,
                               String mAuthorReviewText) {

@@ -38,4 +38,13 @@
     <color name="user_location_detail_color">#ffc363</color>
     <color name="user_location_detail_text_color">#000000</color>
 
+    <!-- TODO : 223 ) Defining Location List On Map Color -->
+    <color name="location_list_on_map_color_primary">#fb9700</color>
+
+    <!-- TODO : 250) Defining Location List Color -->
+    <color name="location_list_color">#fb9700</color>
+
+    <!-- TODO : 260 ) Designing Location Detail Color-->
+    <color name="location_detail_color">#fb9700</color>
+
 </resources>

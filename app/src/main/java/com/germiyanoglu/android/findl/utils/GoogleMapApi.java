@@ -30,6 +30,7 @@ public class GoogleMapApi {
     public static final String LOCATION_TYPE_EXTRA_TEXT = "location_type_extra_text";
     public static final String CURRENT_LOCATION_USER_RATING = "current_location_user_rating";
 
-
+    public static final String ALL_NEARBY_LOCATION = "all_nearby_location";
+    public static final String LOCATION_ID_EXTRA_TEXT = "location_id_text";
 
 }

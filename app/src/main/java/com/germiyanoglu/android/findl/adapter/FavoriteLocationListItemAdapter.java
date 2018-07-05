@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.germiyanoglu.android.findl.R;
+import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
+import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.CursorRecyclerViewAdapter;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
@@ -25,6 +27,8 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 // TODO : 124 ) Defining FavoriteLocationListItemAdapter to show locations as a favorites by defining CursorRecyclerViewAdapter
 public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<FavoriteLocationListItemAdapter.FavoriteLocationListItemAdapterViewHolder> {
 
+
+    private Cursor mCurrentCursor;
 
     // TODO : 125 ) Creating Constructor
     public FavoriteLocationListItemAdapter(Context context, Cursor cursor) {
@@ -48,6 +52,8 @@ public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<F
     // TODO : 126 ) Showing locations in favorites
     @Override
     public void onBindViewHolder(FavoriteLocationListItemAdapterViewHolder holder, Cursor cursor) {
+
+        mCurrentCursor = cursor;
 
         Location locationDetails = Location.from(cursor);
 
@@ -124,11 +130,11 @@ public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<F
         @Override
         public void onClick(View v) {
             if (UtilMethods.isNetworkAvailable(mContext)) {
-                /*Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
+                Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
                 currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_TEXT,
-                        mCurrentDataCursor.getString(
-                                mCurrentDataCursor.getColumnIndex(PlaceDetailEntry.COLUMN_PLACE_ID)));
-                mContext.startActivity(currentLocationDetailIntent);*/
+                        mCurrentCursor.getString(
+                                mCurrentCursor.getColumnIndex(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID)));
+                mContext.startActivity(currentLocationDetailIntent);
 
             }
         }

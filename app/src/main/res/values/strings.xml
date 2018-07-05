@@ -109,14 +109,14 @@
     <!-- TODO : 108 ) Defining Location's Item Icon String -->
     <string name="location_icon_name">Location Icon Name</string>
 
-    <!-- TODO : 120 ) Defining Location's Status -->
+    <!-- TODO : 120 ) Defining Location's Status Strings-->
     <string name="open_now">Open Now</string>
     <string name="closed">Closed</string>
 
-    <!-- TODO : 132 ) Designing User Review Screen-->
+    <!-- TODO : 132 ) Designing User Review Screen String-->
     <string name="no_review_showed">No Review Showed</string>
 
-    <!-- TODO : 135 ) Defining Location Information Detail String-->
+    <!-- TODO : 135 ) Defining Location Information Detail Strings-->
     <string name="phone">Phone Call</string>
     <string name="website">Open Site</string>
     <string name="favourite">Favorite</string>
@@ -125,7 +125,7 @@
     <string name="small_website_icon">Small Website Icon</string>
     <string name="small_location_status_icon">Small Location Status Icon</string>
 
-    <!-- TODO : 174 ) Defining Location Information About Fragment String -->
+    <!-- TODO : 174 ) Defining Location Information About Fragment Strings -->
     <string name="no_phone_number">Phone number which you try to call is invalid</string>
     <string name="no_website">Website which you try to open is invalid</string>
     <string name="yes">Yes</string>
@@ -136,5 +136,25 @@
     <string name="delete_location_favorite">Location is removed from favorites</string>
     <string name="location_permission_title">Location Permission</string>
     <string name="location_permission_description">Do you want to allow location to access your phone?</string>
+
+    <!-- TODO : 224 ) Defining Location List On Map Strings -->
+    <string name="location_list_icon">Location List Icon</string>
+    <string name="list_tag">List of </string>
+    <string name="show_near_location">which you near to</string>
+    <string name="jsonArrayTag">jsonArrayTag</string>
+    <string name="not_found">not found</string>
+
+    <!-- TODO : 251) Defining Location List Strings -->
+    <string name="no_place_found">No Location nearing to you</string>
+    <string name="show_result">List of </string>
+    <string name="near">Nearing to You</string>
+    <string name="no_connection">No Internet Connection</string>
+
+    <!-- TODO : 266 ) Defining ViewPagerAdapter Strings-->
+    <string name="about">ABOUT</string>
+    <string name="review">USERS&#39; REVIEWS</string>
+
+    <!-- TODO : 280) Defining Favorite Location Activity Strings -->
+    <string name="favourite_location_list">Favorite Location List</string>
 
 </resources>

@@ -38,8 +38,10 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -221,6 +223,12 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
             mGoogleApiClient.disconnect();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        enableLocation();
+    }
+
     // TODO : 203) Gettting current location
     @Override
     public void onLocationChanged(Location location) {
@@ -254,6 +262,59 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     private void enableLocation() {
 
         mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
+                .addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+
+                        try {
+                            LocationSettingsResponse response = task.getResult(ApiException.class);
+
+                            if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                                    && ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+
+                            // TODO : 215 ) Calling openMainActivity
+                            openMainActivity();
+
+                            // TODO : 216 ) Stoping SplashScreenActivity
+                            finish();
+
+                        } catch (ApiException e) {
+                            switch (e.getStatusCode())
+                            {
+                                case LocationSettingsStatusCodes.RESOLUTION_REQUIRED :
+                                    ResolvableApiException   resolvableApiException = (ResolvableApiException) e;
+                                    try {
+                                        resolvableApiException.startResolutionForResult(SplashScreenActivity.this,LOCATION_REQUEST_CODE);
+                                    } catch (IntentSender.SendIntentException e1) {
+                                        e1.printStackTrace();
+                                    }
+                                    break;
+
+                                case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                                    //open setting and switch on GPS manually
+                                    break;
+                            }
+                        }
+
+
+                    }
+                });
+
+
+
+        /*mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
                 .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
@@ -282,7 +343,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                // TODO : 217 ) --------------------------------------------------------------------------
+                // TODO : 217 ) Determining status
 
                 int statusCode = ((ApiException) e).getStatusCode();
 
@@ -312,7 +373,10 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
 
             }
 
-        });
+        });*/
+
+
+
     }
 
     @Override
@@ -326,6 +390,8 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // TODO : 218 ) Checking whether requestcode is convenient or not
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 

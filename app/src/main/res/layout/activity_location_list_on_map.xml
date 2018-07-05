@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!-- TODO : 222 ) Designing Location List On Map-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     tools:context=".activity.LocationListOnMapActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:context=".activity.LocationListOnMapActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/location_list_on_map_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/location_list_on_map_color_primary"/>
+
+        <fragment
+            android:id="@+id/location_list_on_map_map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1">
+
+            <View
+                android:id="@+id/location_list_on_map_place_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000">
+            </View>
+
+            <ImageView
+                android:id="@+id/location_list_on_map_location_list_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/location_list_icon"
+                android:src="@drawable/ic_location_list_toc"/>
+
+            <TextView
+                android:id="@+id/location_list_on_map_location_list_placeholder_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@+id/location_list_on_map_location_list_icon_view"
+                android:layout_toRightOf="@+id/location_list_on_map_location_list_icon_view"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                tools:text="Near By Any Location"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

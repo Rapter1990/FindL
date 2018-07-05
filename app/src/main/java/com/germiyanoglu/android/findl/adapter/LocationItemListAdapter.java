@@ -49,7 +49,7 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
     @Override
     public LocationListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.layout_location_main_list_item;
+        int layoutIdForListItem = R.layout.layout_location_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 

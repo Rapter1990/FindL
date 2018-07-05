@@ -27,6 +27,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
@@ -144,10 +145,10 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     public void onConnected(@Nullable Bundle bundle) {
 
 
-        mCurrentLocationRequest = LocationRequest.create();
+        /*mCurrentLocationRequest = LocationRequest.create();
         mCurrentLocationRequest.setInterval(10000);
         mCurrentLocationRequest.setFastestInterval(5000);
-        mCurrentLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mCurrentLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // TODO : 206 ) Checking whether location's permission is allowed or not.
@@ -261,8 +262,11 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     // TODO : 214 ) Enabling location
     private void enableLocation() {
 
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY));
 
-        mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
+
+        mSettingsClient.checkLocationSettings(builder.build())
                 .addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
                     @Override
                     public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
@@ -270,26 +274,33 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
                         try {
                             LocationSettingsResponse response = task.getResult(ApiException.class);
 
-                            if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                                    && ActivityCompat.checkSelfPermission(getApplicationContext(),
-                                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                //    ActivityCompat#requestPermissions
-                                // here to request the missing permissions, and then overriding
-                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                //                                          int[] grantResults)
-                                // to handle the case where the user grants the permission. See the documentation
-                                // for ActivityCompat#requestPermissions for more details.
-                                return;
+                            if(!response.getLocationSettingsStates().isLocationUsable()){
+                                throw new ResolvableApiException(new Status(LocationSettingsStatusCodes.RESOLUTION_REQUIRED));
                             }
-                            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                            else{
 
-                            // TODO : 215 ) Calling openMainActivity
-                            openMainActivity();
+                                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                                        && ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                    // TODO: Consider calling
+                                    //    ActivityCompat#requestPermissions
+                                    // here to request the missing permissions, and then overriding
+                                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                    //                                          int[] grantResults)
+                                    // to handle the case where the user grants the permission. See the documentation
+                                    // for ActivityCompat#requestPermissions for more details.
+                                    return;
+                                }
+                                mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
 
-                            // TODO : 216 ) Stoping SplashScreenActivity
-                            finish();
+                                // TODO : 215 ) Calling openMainActivity
+                                openMainActivity();
+
+                                // TODO : 216 ) Stoping SplashScreenActivity
+                                finish();
+
+                            }
 
                         } catch (ApiException e) {
                             switch (e.getStatusCode())

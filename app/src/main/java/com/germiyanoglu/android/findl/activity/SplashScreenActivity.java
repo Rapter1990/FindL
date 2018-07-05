@@ -261,6 +261,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     // TODO : 214 ) Enabling location
     private void enableLocation() {
 
+
         mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
                 .addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
                     @Override

@@ -145,10 +145,10 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     public void onConnected(@Nullable Bundle bundle) {
 
 
-        /*mCurrentLocationRequest = LocationRequest.create();
+        mCurrentLocationRequest = LocationRequest.create();
         mCurrentLocationRequest.setInterval(10000);
         mCurrentLocationRequest.setFastestInterval(5000);
-        mCurrentLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
+        mCurrentLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // TODO : 206 ) Checking whether location's permission is allowed or not.
@@ -263,8 +263,8 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
     private void enableLocation() {
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(new LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY));
-
+                .addLocationRequest(mCurrentLocationRequest);
+        builder.setAlwaysShow(true);
 
         mSettingsClient.checkLocationSettings(builder.build())
                 .addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {

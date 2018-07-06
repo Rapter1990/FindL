@@ -2,6 +2,7 @@ package com.germiyanoglu.android.findl.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -77,12 +78,15 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
         locationImageList = getValuesFrom(locationList);
 
         int locationDrawableImage = locationImageList.get(position);
-
         Log.d(TAG,"Icon Resource : " + locationDrawableImage);
 
-        Picasso.get().load(locationDrawableImage)
-                .into(holder.locationIcon);
+        holder.locationIcon.setImageDrawable(ContextCompat.getDrawable(mContext,
+                locationDrawableImage));
 
+        /*Picasso.get()
+                .load(locationDrawableImage)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(holder.locationIcon);*/
     }
 
     // TODO : 113 ) Getting item count of locationList
@@ -111,6 +115,7 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
 
         @Override
         public void onClick(View v) {
+            Log.d(TAG,"onClick is working");
             int adapterPosition = getAdapterPosition();
             locationIconNameList = getKeyValuesFrom(locationList);
 

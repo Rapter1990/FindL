@@ -29,7 +29,7 @@
     <color name="location_review_item_line_color">#FFFFFF</color>
 
     <!-- TODO : 106 ) Defining Location's Item List color -->
-    <color name="location_main_item_line_color">#FFFFFF</color>
+    <color name="location_main_item_line_color">#000000</color>
 
     <!-- TODO : 121 ) Defining location Icon Color-->
     <color name="location_icon_color">#FFFFFF</color>

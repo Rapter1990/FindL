@@ -23,6 +23,7 @@ import com.germiyanoglu.android.findl.adapter.LocationMainListItemAdapter;
 import com.germiyanoglu.android.findl.bottomnavigationmenu.BottomNavigationBar;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 import com.germiyanoglu.android.findl.utils.LocationArray;
+import com.germiyanoglu.android.findl.utils.UtilMethods;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.LinkedHashMap;
@@ -131,19 +132,22 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
     public void onClick(String locationIconName) {
         Log.d(TAG, "onClick is working");
 
-        // TODO : 143 ) Defining lcoation's name (such as "Airport")
-        String lcoationName = locationIconName;
+        if (UtilMethods.isNetworkAvailable(getApplicationContext())) {
+            // TODO : 143 ) Defining lcoation's name (such as "Airport")
+            String lcoationName = locationIconName;
 
-        // TODO : 144 ) Changing location Icon Name as below to send it to activity
-        // because of using it in the query to get result (such as "airport")
-        String locationTag = locationIconName.replace(' ', '_').toLowerCase();
+            // TODO : 144 ) Changing location Icon Name as below to send it to activity
+            // because of using it in the query to get result (such as "airport")
+            String locationTag = locationIconName.replace(' ', '_').toLowerCase();
 
 
-        // TODO : 145 ) Calling Another activty to show location with map
-        Intent locationListOnMap = new Intent(mContext, LocationListOnMapActivity.class);
-        locationListOnMap.putExtra(GoogleMapApi.LOCATION_NAME_EXTRA_TEXT, lcoationName);
-        locationListOnMap.putExtra(GoogleMapApi.LOCATION_TYPE_EXTRA_TEXT, locationTag);
-        mContext.startActivity(locationListOnMap);
+            // TODO : 145 ) Calling Another activty to show location with map
+            Intent locationListOnMap = new Intent(mContext, LocationListOnMapActivity.class);
+            locationListOnMap.putExtra(GoogleMapApi.LOCATION_NAME_EXTRA_TEXT, lcoationName);
+            locationListOnMap.putExtra(GoogleMapApi.LOCATION_TYPE_EXTRA_TEXT, locationTag);
+            mContext.startActivity(locationListOnMap);
+        }
+
 
     }
 }

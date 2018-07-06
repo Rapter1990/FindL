@@ -2,6 +2,7 @@
 
 <!-- TODO : 105 ) Designing location item displaying in Main Activity-->
 <LinearLayout
+    android:id="@+id/main_container_of_list_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

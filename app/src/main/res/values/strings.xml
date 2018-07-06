@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FindL</string>
+    <string name="app_title">Location Type List</string>
 
     <!-- TODO 6 ) Defining all types of Google Map from https://developers.google.com/places/web-service/supported_types-->
     <string name="accounting">Accounting</string>

@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
         Log.d(TAG, "onCreate is working");
         ButterKnife.bind(this);
         mContext = MainActivity.this;
+        mToolbar.setTitle(getResources().getString(R.string.app_title));
 
         // TODO 35 ) Calling bottomNavigationViewMenu
         bottomNavigationViewMenu();

@@ -142,7 +142,7 @@ public class LocationListOnMapActivity extends AppCompatActivity implements OnMa
 
     private void initializeVariable() {
         // TODO : 221 ) Defining Map Fragment as a reference
-        mMapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mMapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.location_list_on_map_map);
         mMapFragment.getMapAsync(this);
 
         // TODO : 225 ) Getting lcoation tag and its name from MainActivity

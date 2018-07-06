@@ -20,6 +20,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 // TODO : 101 ) Creating LocationMainListItemAdapter class to list location with respect to its name and location
 public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMainListItemAdapter.LocationListAdapterViewHolder> {
@@ -113,6 +114,7 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
             ButterKnife.bind(this,view);
         }
 
+        @OnClick(R.id.main_container_of_list_item)
         @Override
         public void onClick(View v) {
             Log.d(TAG,"onClick is working");

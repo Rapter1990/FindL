@@ -3,6 +3,7 @@ package com.germiyanoglu.android.findl.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,12 +69,16 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
 
         String name = locationIconNameList.get(position);
 
+        Log.d(TAG,"Icon name : " + name);
+
         holder.locationIconName.setText(name);
 
 
         locationImageList = getValuesFrom(locationList);
 
         int locationDrawableImage = locationImageList.get(position);
+
+        Log.d(TAG,"Icon Resource : " + locationDrawableImage);
 
         Picasso.get().load(locationDrawableImage)
                 .into(holder.locationIcon);
@@ -92,10 +97,10 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
     // TODO : 114 ) Defining LocationListAdapterViewHolder to define Location Icon and its name
     public class LocationListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.location_icon)
+        @BindView(R.id.location_main_icon)
         ImageView locationIcon;
 
-        @BindView(R.id.location_icon_text_view)
+        @BindView(R.id.location_main_icon_text_view)
         TextView locationIconName;
 
 

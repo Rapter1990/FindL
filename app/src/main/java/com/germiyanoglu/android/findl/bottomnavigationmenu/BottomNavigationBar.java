@@ -96,8 +96,14 @@ public class BottomNavigationBar {
     // TODO 29 ) Opening exitApplication
     private static void exitApplication(final Context context){
         Log.d(TAG,"openSearchActivity is working");
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(homeIntent);
+
+        /*android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);*/
     }
 
     // TODO 37 ) Opening openHomeActivity

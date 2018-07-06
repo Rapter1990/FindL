@@ -11,7 +11,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/location_icon"
+        android:id="@+id/location_main_icon"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_gravity="center_horizontal"
@@ -21,11 +21,12 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/location_icon_background"
         android:contentDescription="@string/location_icon_name"
+        android:src="@drawable/ic_accounting"
         android:padding="8dp"
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:id="@+id/location_icon_text_view"
+        android:id="@+id/location_main_icon_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

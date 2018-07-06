@@ -134,5 +134,5 @@ public class FavoriteLocationActivity extends AppCompatActivity {
     };
 
 
-    // TODO : 285) -------------------------------------------------------------------------
+
 }

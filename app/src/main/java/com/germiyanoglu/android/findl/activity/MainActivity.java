@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
     private LinkedHashMap<String, Integer> locationList = new LinkedHashMap<>();
     private LocationMainListItemAdapter locationMainListItemAdapter;
     private Context mContext;
-
+    private SharedPreferences mLocationSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +67,15 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
         mContext = MainActivity.this;
         mToolbar.setTitle(getResources().getString(R.string.app_title));
 
+        // TODO : 285) ------------------------------------------------------------------------------
+
         // TODO 35 ) Calling bottomNavigationViewMenu
         bottomNavigationViewMenu();
 
         // TODO : 146 ) Calling designLocationMainAdapter
         designLocationMainAdapter();
     }
+
 
     // TODO 34 ) Creating Bottom Navigation View Menu
     private void bottomNavigationViewMenu() {

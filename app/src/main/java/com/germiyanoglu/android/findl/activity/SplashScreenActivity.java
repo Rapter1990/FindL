@@ -187,6 +187,15 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
             enableLocation();
 
 
+        mLocationSharedPreferences = getApplicationContext().getSharedPreferences(
+                GoogleMapApi.CURRENT_LOCATION_SHARED_PREFERENCE_KEY, 0);
+
+        //SharedPreference to store current location
+        SharedPreferences.Editor locationEditor = mLocationSharedPreferences.edit();
+        locationEditor.putString(GoogleMapApi.CURRENT_LOCATION_DATA, mCurrentLocation);
+        locationEditor.apply();
+
+
     }
 
     // TODO : 202) While the connection is suspended, connect it again
@@ -265,6 +274,7 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(mCurrentLocationRequest);
         builder.setAlwaysShow(true);
+
 
         mSettingsClient.checkLocationSettings(builder.build())
                 .addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {

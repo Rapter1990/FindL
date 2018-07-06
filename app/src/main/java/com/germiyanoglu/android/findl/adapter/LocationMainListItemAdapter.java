@@ -64,6 +64,8 @@ public class LocationMainListItemAdapter extends RecyclerView.Adapter<LocationMa
     @Override
     public void onBindViewHolder(@NonNull LocationListAdapterViewHolder holder, int position) {
 
+        locationIconNameList = getKeyValuesFrom(locationList);
+
         String name = locationIconNameList.get(position);
 
         holder.locationIconName.setText(name);

@@ -153,9 +153,12 @@
 
     <!-- TODO : 266 ) Defining ViewPagerAdapter Strings-->
     <string name="about">ABOUT</string>
-    <string name="review">USERS&#39; REVIEWS</string>
+    <string name="review">REVIEWS of USERS</string>
 
     <!-- TODO : 280) Defining Favorite Location Activity Strings -->
     <string name="favourite_location_list">Favorite Location List</string>
+
+    <!-- TODO : 285) Location Detail Information -->
+    <string name="location_detail_information">Location Detail Information</string>
 
 </resources>

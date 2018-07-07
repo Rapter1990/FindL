@@ -2,6 +2,7 @@ package com.germiyanoglu.android.findl.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -67,6 +68,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         // TODO : 269 ) Setting VISIBLE to progressBar
         progressBar.setVisibility(View.VISIBLE);
 
+
         defineToolbar();
         defineLocationUrl();
 
@@ -89,7 +91,7 @@ public class LocationDetailActivity extends AppCompatActivity {
     private void defineToolbar() {
         // TODO : 267 ) Defining toolbar
         setSupportActionBar(toolbar);
-        setTitle(R.string.app_name);
+        setTitle(R.string.location_detail_information);
         toolbar.setTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -219,7 +221,7 @@ public class LocationDetailActivity extends AppCompatActivity {
 
                     // TODO 274 )  Setting these bundle in the viewpager
                     ViewPagerAdapter viewpagerAdapter = new ViewPagerAdapter(
-                            getSupportFragmentManager());
+                            getSupportFragmentManager(),mContext);
                     viewpagerAdapter.setBundleData(currentLocationDetailData, currentLocationUserRatingDetail);
                     viewPager.setAdapter(viewpagerAdapter);
 

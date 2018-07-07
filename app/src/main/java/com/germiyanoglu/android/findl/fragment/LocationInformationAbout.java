@@ -452,6 +452,4 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
     }
 
 
-
-    // TODO : 285) ------------------------------------------------------------------------------
 }

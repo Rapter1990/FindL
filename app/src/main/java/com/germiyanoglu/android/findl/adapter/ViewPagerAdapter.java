@@ -1,5 +1,6 @@
 package com.germiyanoglu.android.findl.adapter;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,8 +19,12 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     Bundle locationAboutFragment;
     Bundle locationReviewFragment;
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    // TODO : 286) Defining Context;
+    private Context mContext;
+
+    public ViewPagerAdapter(FragmentManager fm,Context context) {
         super(fm);
+        mContext = context;
     }
 
     // TODO : 264 ) Adding two fragment
@@ -27,13 +32,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                LocationInformationAbout placeAboutDetailFragment = new LocationInformationAbout();
-                placeAboutDetailFragment.setArguments(locationAboutFragment);
-                return placeAboutDetailFragment;
+                LocationInformationAbout locationAboutDetailFragment = new LocationInformationAbout();
+                locationAboutDetailFragment.setArguments(locationAboutFragment);
+                return locationAboutDetailFragment;
             case 1:
-                LocationUserReview placeReviewDetailFragment = new LocationUserReview();
-                placeReviewDetailFragment.setArguments(locationReviewFragment);
-                return placeReviewDetailFragment;
+                LocationUserReview locationReviewDetailFragment = new LocationUserReview();
+                locationReviewDetailFragment.setArguments(locationReviewFragment);
+                return locationReviewDetailFragment;
         }
         return null;
     }
@@ -54,9 +59,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return Resources.getSystem().getString(R.string.about);
+                return mContext.getResources().getString(R.string.about);
             case 1:
-                return Resources.getSystem().getString(R.string.review);
+                return mContext.getResources().getString(R.string.review);
         }
         return null;
     }

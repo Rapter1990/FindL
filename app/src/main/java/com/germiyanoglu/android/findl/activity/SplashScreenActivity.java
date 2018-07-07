@@ -206,27 +206,17 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
                     @Override
                     public void onSuccess(Location location) {
                         if (location != null) {
-                            mCurrentLocation = String.valueOf(location.getLatitude()
-                                    + "," + String.valueOf(location.getLongitude()));
-                        } else {
-                            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                                    ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                //    ActivityCompat#requestPermissions
-                                // here to request the missing permissions, and then overriding
-                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                //                                          int[] grantResults)
-                                // to handle the case where the user grants the permission. See the documentation
-                                // for ActivityCompat#requestPermissions for more details.
-                                return;
-                            }
-                            mFusedLocationClient.requestLocationUpdates(mLocationRequest,
-                                    mLocationCallback, Looper.myLooper());
-
+                            onLocationChanged(location);
                         }
-
                     }
-                });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Error trying to get last GPS location");
+                        e.printStackTrace();
+                    }
+        });
 
 
         Log.d(TAG, "Current Location in SplashScreen Activity : " + mCurrentLocation);

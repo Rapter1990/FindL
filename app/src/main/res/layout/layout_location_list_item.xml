@@ -3,6 +3,7 @@
 <!-- TODO 95 ) Designing location item to be shown in the list -->
 
 <RelativeLayout
+    android:id="@+id/location_list_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"

@@ -101,8 +101,17 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
 
         Log.d(TAG, "onCreateView Bundle is working");
 
+        // TODO : 158 ) Defining view
+        Context context = container.getContext();
+        int layoutIdForListItem = R.layout.fragment_location_information;
+        inflater = LayoutInflater.from(context);
+        boolean shouldAttachToParentImmediately = false;
+
+        View view = inflater.inflate(layoutIdForListItem, container, shouldAttachToParentImmediately);
+        ButterKnife.bind(this, view);
+
         // TODO : 161 ) Defining Map Fragment
-        mapFragment = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map);
+        mapFragment = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.location_detail_map);
         mapFragment.getMapAsync(this);
 
         // TODO : 167 ) Getting lcoation from Bundle
@@ -116,20 +125,14 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
         openWebsite(mLocation);
         addorDeleteFavorite(mLocation);
 
-        // TODO : 158 ) Defining view
-        Context context = container.getContext();
-        int layoutIdForListItem = R.layout.fragment_location_information;
-        inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
-
-        View view = inflater.inflate(layoutIdForListItem, container, shouldAttachToParentImmediately);
-        ButterKnife.bind(this, view);
 
         // TODO : 188) Checking whether selected location is in the favorites or not.
         if(checkFavoriteIconInDatabase(mLocation.getmLocationId())) {
+            Log.d(TAG, "White fill favorite icon ");
             Picasso.get().load(R.drawable.ic_favorite_white_fill)
                     .into(mFavoriteIcon);
         }else{
+            Log.d(TAG, "White border favorite icon ");
             Picasso.get().load(R.drawable.ic_favorite_white_border)
                     .into(mFavoriteIcon);
         }

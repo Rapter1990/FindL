@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,14 @@ import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 import com.germiyanoglu.android.findl.utils.UtilMethods;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 // TODO : 116 ) Creating LocationItemListAdapter for the design of locations' list which is near me
@@ -78,8 +83,21 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
                 mNearByPlaceArrayList.get(position).getmLocationLatitude(),
                 mNearByPlaceArrayList.get(position).getmLocationLongitude()) / 1000;
 
+        Log.d(TAG,"Distance Calculation : " + distance);
+
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+        symbols.setDecimalSeparator('.');
+        DecimalFormat format = new DecimalFormat("#.##", symbols);
+
+        double totalDistance = 0.0;
+        try {
+            totalDistance = (double) format.parse(format.format(distance));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         // Location Distance
-        String distanceBetweenTwoPlace = String.valueOf(distance);
+        String distanceBetweenTwoPlace = String.valueOf(totalDistance);
         holder.mLocationDistanceTextView.setText("~ " + distanceBetweenTwoPlace + " Km");
 
         // Location Name
@@ -143,6 +161,7 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
             ButterKnife.bind(this,itemView);
         }
 
+        @OnClick(R.id.location_list_item)
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();

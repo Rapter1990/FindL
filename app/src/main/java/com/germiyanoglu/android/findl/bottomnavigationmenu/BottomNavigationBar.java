@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.germiyanoglu.android.findl.R;
+import com.germiyanoglu.android.findl.activity.FavoriteLocationActivity;
 import com.germiyanoglu.android.findl.activity.InfoActivity;
 import com.germiyanoglu.android.findl.activity.MainActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -75,7 +76,7 @@ public class BottomNavigationBar {
     // TODO 26 ) Opening openFavoriteActivity
     private static void openFavoriteActivity(final Context context){
         Log.d(TAG,"openFavoriteActivity is working");
-        /*Intent intent = new Intent(context, activity.class);
+        /*Intent intent = new Intent(context, FavoriteLocationActivity.class);
         context.startActivity(intent);*/
     }
 

@@ -414,37 +414,44 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                     null,
                     null);
 
-            // TODO : 185) Moving cursor to first variable
-            locationCursor.moveToFirst();
+            if(locationCursor != null && locationCursor.getCount()>0){
+                // TODO : 185) Moving cursor to first variable
+                locationCursor.moveToFirst();
 
-            // TODO : 186) Getting id of location form table in database and add it into location object
-            while(!locationCursor.isAfterLast()){
+                // TODO : 186) Getting id of location form table in database and add it into location object
+                while(!locationCursor.isAfterLast()){
 
-                int locationColumnIndexOfId = locationCursor.getColumnIndex
-                        (LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID);
+                    int locationColumnIndexOfId = locationCursor.getColumnIndex
+                            (LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID);
 
-                String locationId =
-                        locationCursor.getString(locationColumnIndexOfId);
+                    String locationId =
+                            locationCursor.getString(locationColumnIndexOfId);
 
-                locationIdList.add(locationId);
+                    locationIdList.add(locationId);
 
-                locationCursor.moveToNext();
-            }
-
-            // TODO : 186) Checking whether id from location id and id from location in database are the same or not
-            if (locationIdList.size() != 0) {
-                for (int i = 0; i < locationIdList.size(); i++) {
-                    if (locationIdList.get(i).equals(id))
-                        ischecked = true;
+                    locationCursor.moveToNext();
                 }
+
+                // TODO : 186) Checking whether id from location id and id from location in database are the same or not
+                if (locationIdList.size() != 0) {
+                    for (int i = 0; i < locationIdList.size(); i++) {
+                        if (locationIdList.get(i).equals(id))
+                            ischecked = true;
+                    }
+                }
+
+                // TODO : 187) Closing cursor
+                locationCursor.close();
+
+                return ischecked;
             }
 
-            // TODO : 187) Closing cursor
-            locationCursor.close();
-
-            return ischecked;
         }
 
         return ischecked;
     }
+
+
+
+    // TODO : 285) ------------------------------------------------------------------------------
 }

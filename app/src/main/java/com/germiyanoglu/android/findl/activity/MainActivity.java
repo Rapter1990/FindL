@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
         mContext = MainActivity.this;
         mToolbar.setTitle(getResources().getString(R.string.app_title));
 
-        // TODO : 285) ------------------------------------------------------------------------------
 
         // TODO 35 ) Calling bottomNavigationViewMenu
         bottomNavigationViewMenu();

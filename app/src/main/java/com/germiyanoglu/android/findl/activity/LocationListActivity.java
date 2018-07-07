@@ -63,8 +63,8 @@ public class LocationListActivity extends AppCompatActivity implements LocationI
             emptyTextView.setVisibility(View.VISIBLE);
             locationListRecyleView.setVisibility(View.GONE);
         } else {
-            emptyTextView.setVisibility(View.VISIBLE);
-            locationListRecyleView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.GONE);
+            locationListRecyleView.setVisibility(View.VISIBLE);
 
             int orientation = GridLayout.VERTICAL;
             int span = getResources().getInteger(R.integer.gridlayout_location_list_span);

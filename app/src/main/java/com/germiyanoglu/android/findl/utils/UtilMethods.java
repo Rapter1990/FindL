@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 
 // TODO : 102 ) Creating UtilMethods to define some method used for project
 public class UtilMethods {
@@ -35,14 +37,30 @@ public class UtilMethods {
         double c = 2 * Math.asin(Math.sqrt(a));
         double valueResult = Radius * c;
         double km = valueResult / 1;
-        DecimalFormat newFormat = new DecimalFormat("0.00");
-        int kmInDec = Integer.valueOf(newFormat.format(km));
         double meter = valueResult % 1000;
-        int meterInDec = Integer.valueOf(newFormat.format(meter));
+
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+        symbols.setDecimalSeparator('.');
+        DecimalFormat format = new DecimalFormat("#.##", symbols);
+        double kmInDec = 0;
+        double meterInDec = 0;
+        try {
+            kmInDec = (double) format.parse(format.format(km));
+            meterInDec = (double) format.parse(format.format(meter));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        //int meterInDec = Integer.valueOf(newFormat.format(meter));
         Log.d("Radius Value", "" + valueResult + "   KM  " + kmInDec
                 + " Meter   " + meterInDec);
 
-        return (double) kmInDec +  meterInDec ;
+        double total = kmInDec +  meterInDec;
+
+        double rounded = Math.round(total * 1e2) / 1e2;
+
+        return rounded;
     }
 
     // TODO : 131 ) Define a method for giving a permission when it is asked

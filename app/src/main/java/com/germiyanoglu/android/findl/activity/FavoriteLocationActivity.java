@@ -59,7 +59,7 @@ public class FavoriteLocationActivity extends AppCompatActivity {
 
         // TODO : 284) Initialize loader Manager
         getLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
-                (android.app.LoaderManager.LoaderCallbacks<Object>) favoriteLocationLoaderListener);
+                (android.app.LoaderManager.LoaderCallbacks<Cursor>) favoriteLocationLoaderListener);
     }
 
 

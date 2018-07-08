@@ -3,6 +3,7 @@ package com.germiyanoglu.android.findl.bottomnavigationmenu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
@@ -76,15 +77,18 @@ public class BottomNavigationBar {
     // TODO 26 ) Opening openFavoriteActivity
     private static void openFavoriteActivity(final Context context){
         Log.d(TAG,"openFavoriteActivity is working");
-        /*Intent intent = new Intent(context, FavoriteLocationActivity.class);
-        context.startActivity(intent);*/
+        Intent intent = new Intent(context, FavoriteLocationActivity.class);
+        context.startActivity(intent);
     }
 
     // TODO 27 ) Opening openContractActivity
     private static void openContractActivity(final Context context){
         Log.d(TAG,"openContractActivity is working");
-        /*Intent intent = new Intent(context, activity.class);
-        context.startActivity(intent);*/
+        Intent mailToIntent = new Intent(Intent.ACTION_SEND);
+        mailToIntent.setData(Uri.parse("mailto:"));
+        mailToIntent.setType("text/plain");
+        mailToIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sngermiyanoglu@gmail.com"});
+        context.startActivity(Intent.createChooser(mailToIntent, "Mail is sending..."));
     }
 
     // TODO 28 ) Opening openInfoActivity

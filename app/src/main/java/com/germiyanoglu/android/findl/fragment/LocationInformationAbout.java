@@ -301,7 +301,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                 if(mFavoriteIcon.getDrawable().getConstantState().equals(
                         ContextCompat.getDrawable(getActivity(),
                                 R.drawable.ic_favorite_white_border).getConstantState())){
-
+                    Log.d(TAG, "Converting Favorite White Border to Favorite Fill White");
                     // TODO : 180 ) Defining addLocation method to add it into database
                     addLocation(mLocation);
 
@@ -313,7 +313,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                             Toast.LENGTH_SHORT).show();
 
                 }else{
-
+                    Log.d(TAG, "Converting Favorite Fill White to Favorite White Border");
                     // TODO : 183) Deleting the location from the database.
                     String where = LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID + "=?";
                     String[] whereArgs = new String[]{String.valueOf(mLocation.getmLocationId())};

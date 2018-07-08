@@ -50,7 +50,7 @@ public class LocationListOnMapActivity extends AppCompatActivity implements OnMa
     private Context mContext;
 
     // TODO : 220 ) Defining variables
-    private ArrayList<Location> mNearByPlaceArrayList = new ArrayList<>();
+    private ArrayList<Location> mNearByLocationArrayList = new ArrayList<>();
     private GoogleMap mGoogleMap;
     private boolean mMapReady = false;
     private String mLocationTag;
@@ -98,7 +98,7 @@ public class LocationListOnMapActivity extends AppCompatActivity implements OnMa
             public void onClick(View v) {
                 Intent locationNearMeList = new Intent(mContext, LocationListActivity.class);
                 locationNearMeList.putParcelableArrayListExtra(
-                        GoogleMapApi.ALL_NEARBY_LOCATION, mNearByPlaceArrayList);
+                        GoogleMapApi.ALL_NEARBY_LOCATION, mNearByLocationArrayList);
                 locationNearMeList.putExtra(GoogleMapApi.LOCATION_TYPE_EXTRA_TEXT, mLocationTag);
                 locationNearMeList.putExtra(GoogleMapApi.LOCATION_NAME_EXTRA_TEXT, mLocationName);
                 startActivity(locationNearMeList);
@@ -233,7 +233,7 @@ public class LocationListOnMapActivity extends AppCompatActivity implements OnMa
 
                             // TODO : 240 ) Adding location object  to arraylist
 
-                            mNearByPlaceArrayList.add(currentLocation);
+                            mNearByLocationArrayList.add(currentLocation);
                         }
 
                         // TODO : 240 ) Showing each location on the map
@@ -262,9 +262,9 @@ public class LocationListOnMapActivity extends AppCompatActivity implements OnMa
                             mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
                             // TODO : 244) Setting lcaotion in arraylist on the map
-                            for (int i = 0; i < mNearByPlaceArrayList.size(); i++) {
-                                Double currentLatitude = mNearByPlaceArrayList.get(i).getmLocationLatitude();
-                                Double currentLongitude = mNearByPlaceArrayList.get(i).getmLocationLongitude();
+                            for (int i = 0; i < mNearByLocationArrayList.size(); i++) {
+                                Double currentLatitude = mNearByLocationArrayList.get(i).getmLocationLatitude();
+                                Double currentLongitude = mNearByLocationArrayList.get(i).getmLocationLongitude();
                                 LatLng currentLatLng = new LatLng(currentLatitude, currentLongitude);
                                 mGoogleMap.addMarker(new MarkerOptions()
                                         .position(currentLatLng)

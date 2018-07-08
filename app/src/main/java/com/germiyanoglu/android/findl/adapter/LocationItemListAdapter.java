@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.germiyanoglu.android.findl.R;
 import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 import com.germiyanoglu.android.findl.utils.UtilMethods;
+
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -33,19 +36,25 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
 
     // TODO : 116 ) Defining attributes used for adapter
     private Context mContext;
-    private ArrayList<Location> mNearByPlaceArrayList = new ArrayList<>();
+    private ArrayList<Location> mNearByLocationArrayList = new ArrayList<>();
 
     // TODO : 117 ) Defining OnClickHandler variable
-    private final NearLocationListItemAdapterOnClickHandler mClickHandler;
+    private NearLocationListItemAdapterOnClickHandler mClickHandler;
+
 
     // TODO : 118 ) Defining OnClickHandler interface
     public interface NearLocationListItemAdapterOnClickHandler {
         void onClick(Location nearLocationData);
     }
 
+    public LocationItemListAdapter(Context context, ArrayList<Location> nearByPlaceArrayList){
+        mContext = context;
+        mNearByLocationArrayList = nearByPlaceArrayList;
+    }
+
     public LocationItemListAdapter(Context context, ArrayList<Location> nearByPlaceArrayList, NearLocationListItemAdapterOnClickHandler mClickHandler) {
         mContext = context;
-        mNearByPlaceArrayList = nearByPlaceArrayList;
+        mNearByLocationArrayList = nearByPlaceArrayList;
         this.mClickHandler = mClickHandler;
     }
 
@@ -80,8 +89,8 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
         Double distance = UtilMethods.CalculationByDistance(
                 Double.parseDouble(currentLocationLatitudeAndLongitude[0]),
                 Double.parseDouble(currentLocationLatitudeAndLongitude[1]),
-                mNearByPlaceArrayList.get(position).getmLocationLatitude(),
-                mNearByPlaceArrayList.get(position).getmLocationLongitude()) / 1000;
+                mNearByLocationArrayList.get(position).getmLocationLatitude(),
+                mNearByLocationArrayList.get(position).getmLocationLongitude()) / 1000;
 
         Log.d(TAG,"Distance Calculation : " + distance);
 
@@ -101,24 +110,24 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
         holder.mLocationDistanceTextView.setText("~ " + distanceBetweenTwoPlace + " Km");
 
         // Location Name
-        holder.mLocationNameTextView.setText(mNearByPlaceArrayList.get(position).getmLocationName());
+        holder.mLocationNameTextView.setText(mNearByLocationArrayList.get(position).getmLocationName());
 
         // Location User's Rating
-        holder.mLocationRating.setRating(Float.parseFloat(String.valueOf(mNearByPlaceArrayList.get(position)
+        holder.mLocationRating.setRating(Float.parseFloat(String.valueOf(mNearByLocationArrayList.get(position)
                 .getmLocationRating())));
 
         // Location Address
-        holder.mLocationAddressTextView.setText(mNearByPlaceArrayList.get(position).getmLocationAddress());
+        holder.mLocationAddressTextView.setText(mNearByLocationArrayList.get(position).getmLocationAddress());
 
         // Location Status
-        if (mNearByPlaceArrayList.get(position).getmLocationOpeningHourStatus().equals("true")) {
+        if (mNearByLocationArrayList.get(position).getmLocationOpeningHourStatus().equals("true")) {
             holder.mLocationOpenStatusTextView.setText(R.string.open_now);
 
-        } else if (mNearByPlaceArrayList.get(position).getmLocationOpeningHourStatus().equals("false")) {
+        } else if (mNearByLocationArrayList.get(position).getmLocationOpeningHourStatus().equals("false")) {
             holder.mLocationOpenStatusTextView.setText(R.string.closed);
 
         } else {
-            holder.mLocationOpenStatusTextView.setText(mNearByPlaceArrayList.get(position)
+            holder.mLocationOpenStatusTextView.setText(mNearByLocationArrayList.get(position)
                     .getmLocationOpeningHourStatus());
         }
 
@@ -126,10 +135,10 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
 
     @Override
     public int getItemCount() {
-        if(mNearByPlaceArrayList == null){
+        if(mNearByLocationArrayList == null){
             return 0;
         }
-        return mNearByPlaceArrayList.size();
+        return mNearByLocationArrayList.size();
     }
 
 
@@ -165,7 +174,7 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Location nearLocationDetail = mNearByPlaceArrayList.get(adapterPosition);
+            Location nearLocationDetail = mNearByLocationArrayList.get(adapterPosition);
             mClickHandler.onClick(nearLocationDetail);
         }
     }

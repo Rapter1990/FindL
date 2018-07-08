@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements LocationMainListI
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.ic_search).getActionView();
 
+        searchView.setQueryHint(getString(R.string.search_placeholder));
+
         searchView.setSearchableInfo(searchManager.getSearchableInfo(
                 new ComponentName(this, LocationSearchResultActivity.class)));
 

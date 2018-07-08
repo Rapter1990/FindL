@@ -163,5 +163,6 @@
 
     <!-- TODO : 288) Search Result Title -->
     <string name="search_title">Search Results</string>
+    <string name="search_placeholder">Search</string>
 
 </resources>

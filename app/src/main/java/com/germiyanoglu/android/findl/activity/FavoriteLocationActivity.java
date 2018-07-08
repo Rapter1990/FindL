@@ -2,6 +2,7 @@ package com.germiyanoglu.android.findl.activity;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -9,10 +10,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 // TODO : 277) Creating FavoriteLocationActivity to list favorite location
-public class FavoriteLocationActivity extends AppCompatActivity {
+public class FavoriteLocationActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final String TAG = FavoriteLocationActivity.class.getName();
 
@@ -58,8 +59,8 @@ public class FavoriteLocationActivity extends AppCompatActivity {
         defineLayout();
 
         // TODO : 284) Initialize loader Manager
-        getLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
-                (android.app.LoaderManager.LoaderCallbacks<Cursor>) favoriteLocationLoaderListener);
+        getSupportLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
+                FavoriteLocationActivity.this);
     }
 
 
@@ -92,47 +93,42 @@ public class FavoriteLocationActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     // TODO : 283) Defining Loader Manager Method to load favorite location from database
-    LoaderManager.LoaderCallbacks<Cursor> favoriteLocationLoaderListener = new LoaderManager.LoaderCallbacks<Cursor>() {
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        //define projection for the favouritePlace Details (No of Column)
+        String[] projection = {
+                LocationDetailContract.LocationDetailEntry._ID,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LATITUDE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LONGITUDE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_NAME,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_OPENING_HOUR_STATUS,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_RATING,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ADDRESS,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_PHONE_NUMBER,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_WEBSITE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_SHARE_LINK
+        };
 
+        return new CursorLoader(mContext,
+                LocationDetailContract.LocationDetailEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null);
+    }
 
-        @NonNull
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-            //define projection for the favouritePlace Details (No of Column)
-            String[] projection = {
-                    LocationDetailContract.LocationDetailEntry._ID,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LATITUDE,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LONGITUDE,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_NAME,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_OPENING_HOUR_STATUS,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_RATING,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ADDRESS,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_PHONE_NUMBER,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_WEBSITE,
-                    LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_SHARE_LINK
-            };
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+        Log.d(TAG, "onLoadFinished called with data");
+        ((FavoriteLocationListItemAdapter) favoriteLocationRecyleView.getAdapter()).swapCursor(data);
+    }
 
-            return new CursorLoader(mContext,
-                    LocationDetailContract.LocationDetailEntry.CONTENT_URI,
-                    projection,
-                    null,
-                    null,
-                    null);
-        }
-
-        @Override
-        public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-            ((FavoriteLocationListItemAdapter) favoriteLocationRecyleView.getAdapter()).swapCursor(data);
-        }
-
-        @Override
-        public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-            ((FavoriteLocationListItemAdapter) favoriteLocationRecyleView.getAdapter()).swapCursor(null);
-        }
-    };
-
-
-
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+        ((FavoriteLocationListItemAdapter) favoriteLocationRecyleView.getAdapter()).swapCursor(null);
+    }
 }

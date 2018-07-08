@@ -161,4 +161,7 @@
     <!-- TODO : 285) Location Detail Information -->
     <string name="location_detail_information">Location Detail Information</string>
 
+    <!-- TODO : 288) Search Result Title -->
+    <string name="search_title">Search Results</string>
+
 </resources>

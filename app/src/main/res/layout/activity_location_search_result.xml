@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--  TODO : 286) Location Search Screen Design -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LocationSearchResultActivity">
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    tools:context=".activity.LocationListActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/location_search_list_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/location_list_color"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/location_search_list_recycler_view"
+        android:layout_below="@id/location_list_toolbar"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.LocationListActivity"/>
+
+    <TextView
+        android:id="@+id/location_search_list_empty_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableTop="@drawable/ic_cloud_off_black"
+        android:gravity="center"
+        android:text="@string/no_place_found"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/location_search_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyle"/>
+
+</RelativeLayout>

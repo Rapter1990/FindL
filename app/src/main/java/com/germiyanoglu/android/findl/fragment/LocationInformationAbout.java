@@ -174,7 +174,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(new LatLng(Double.valueOf(currentPlace[0])
                         , Double.valueOf(currentPlace[1])))
-                .zoom(13)
+                .zoom(12.2f)
                 .bearing(0)
                 .tilt(0)
                 .build();

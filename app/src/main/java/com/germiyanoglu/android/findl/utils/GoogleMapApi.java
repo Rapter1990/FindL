@@ -10,7 +10,7 @@ public class GoogleMapApi {
     public static final String API_KEY_TAG = "key";
     public static final String LOCATION_TAG = "location";
     public static final String RADIUS_TAG = "radius";
-    public static final String RADIUS_VALUE = "10000";
+    public static final String RADIUS_VALUE = "4500";
     public static final String RANK_BY_TAG = "rankby";
     public static final String DISTANCE_TAG = "distance";
     public static final String KEYWORD_TAG = "keyword";

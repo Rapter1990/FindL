@@ -273,6 +273,8 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
         enableLocation();
     }
 
+
+
     // TODO : 203) Gettting current location
     @Override
     public void onLocationChanged(Location location) {
@@ -367,70 +369,6 @@ public class SplashScreenActivity extends AppCompatActivity implements GoogleApi
 
                     }
                 });
-
-
-
-        /*mSettingsClient.checkLocationSettings(mLocationSettingsRequest)
-                .addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-
-                        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            // TODO: Consider calling
-                            //    ActivityCompat#requestPermissions
-                            // here to request the missing permissions, and then overriding
-                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                            //                                          int[] grantResults)
-                            // to handle the case where the user grants the permission. See the documentation
-                            // for ActivityCompat#requestPermissions for more details.
-                            return;
-                        }
-                        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-
-                        // TODO : 215 ) Calling openMainActivity
-                        openMainActivity();
-
-                        // TODO : 216 ) Stoping SplashScreenActivity
-                        finish();
-
-
-                    }
-                }).addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                // TODO : 217 ) Determining status
-
-                int statusCode = ((ApiException) e).getStatusCode();
-
-                switch (statusCode) {
-
-                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-
-                        Log.d(TAG, "Location settings are not satisfied. Attempting to upgrade " +
-                                "location settings ");
-                        try {
-                            // Show the dialog by calling startResolutionForResult(), and check the
-                            // result in onActivityResult().
-                            ResolvableApiException rae = (ResolvableApiException) e;
-                            rae.startResolutionForResult(SplashScreenActivity.this, LOCATION_REQUEST_CODE);
-                        } catch (IntentSender.SendIntentException sendEx) {
-                            Log.d(TAG, "PendingIntent unable to execute request.");
-                        }
-
-                        break;
-
-                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                        break;
-
-
-                }
-
-
-            }
-
-        });*/
-
 
 
     }

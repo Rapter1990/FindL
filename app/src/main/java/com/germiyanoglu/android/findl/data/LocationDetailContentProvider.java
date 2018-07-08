@@ -55,6 +55,7 @@ public class LocationDetailContentProvider extends ContentProvider {
                         null,
                         null,
                         sortOrder);
+                break;
 
             case LOCATION_WITH_ID:
                 selection = LocationDetailContract.LocationDetailEntry._ID + "=?";

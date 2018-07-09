@@ -39,7 +39,7 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
     private ArrayList<Location> mNearByLocationArrayList = new ArrayList<>();
 
     // TODO : 117 ) Defining OnClickHandler variable
-    private NearLocationListItemAdapterOnClickHandler mClickHandler;
+    private final NearLocationListItemAdapterOnClickHandler mClickHandler;
 
 
     // TODO : 118 ) Defining OnClickHandler interface
@@ -47,10 +47,6 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
         void onClick(Location nearLocationData);
     }
 
-    public LocationItemListAdapter(Context context, ArrayList<Location> nearByPlaceArrayList){
-        mContext = context;
-        mNearByLocationArrayList = nearByPlaceArrayList;
-    }
 
     public LocationItemListAdapter(Context context, ArrayList<Location> nearByPlaceArrayList, NearLocationListItemAdapterOnClickHandler mClickHandler) {
         mContext = context;

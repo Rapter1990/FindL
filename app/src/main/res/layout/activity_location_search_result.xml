@@ -19,7 +19,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/location_search_list_recycler_view"
-        android:layout_below="@id/location_list_toolbar"
+        android:layout_below="@id/location_search_list_toolbar"
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LocationSearchResultActivity extends AppCompatActivity implements LocationItemListAdapter.NearLocationListItemAdapterOnClickHandler{
+public class LocationSearchResultActivity extends AppCompatActivity{
 
     private static final String TAG = LocationSearchResultActivity.class.getName();
 
@@ -214,7 +214,19 @@ public class LocationSearchResultActivity extends AppCompatActivity implements L
                             int span = getResources().getInteger(R.integer.gridlayout_location_list_span);
                             boolean reverseLayout = false;
                             GridLayoutManager layoutManager = new GridLayoutManager(mContext, span, orientation, reverseLayout);
-                            LocationItemListAdapter mLocationListAdapter = new LocationItemListAdapter(mContext, mNearByLocationArrayList);
+                            LocationItemListAdapter mLocationListAdapter = new LocationItemListAdapter(mContext, mNearByLocationArrayList, new LocationItemListAdapter.NearLocationListItemAdapterOnClickHandler() {
+                                @Override
+                                public void onClick(Location nearLocationData) {
+                                    if (UtilMethods.isNetworkAvailable(mContext)) {
+                                        Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
+                                        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
+                                                nearLocationData.getmLocationId());
+                                        mContext.startActivity(currentLocationDetailIntent);
+
+                                    } else
+                                        Toast.makeText(mContext,getResources().getString(R.string.no_connection),Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             recyclerView.setLayoutManager(layoutManager);
                             recyclerView.setAdapter(mLocationListAdapter);
 
@@ -244,19 +256,6 @@ public class LocationSearchResultActivity extends AppCompatActivity implements L
 
 
     }
-
-    @Override
-    public void onClick(Location nearLocationData) {
-        if (UtilMethods.isNetworkAvailable(mContext)) {
-            Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
-            currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
-                    nearLocationData.getmLocationId());
-            mContext.startActivity(currentLocationDetailIntent);
-
-        } else
-            Toast.makeText(mContext,getResources().getString(R.string.no_connection),Toast.LENGTH_SHORT).show();
-    }
-
 
     // TODO 302 ) -----------------------------------------------------------------------------------------------------
 }

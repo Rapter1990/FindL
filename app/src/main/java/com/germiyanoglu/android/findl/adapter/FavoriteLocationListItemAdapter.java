@@ -133,7 +133,7 @@ public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<F
         public void onClick(View v) {
             if (UtilMethods.isNetworkAvailable(mContext)) {
                 Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
-                currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_TEXT,
+                currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
                         mCurrentCursor.getString(
                                 mCurrentCursor.getColumnIndex(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID)));
                 mContext.startActivity(currentLocationDetailIntent);

@@ -45,14 +45,10 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
     @BindView(R.id.favorite_location_list_recycler_view)
     RecyclerView favoriteLocationRecyleView;
 
-    @BindView(R.id.favorite_location_list_empty_textview)
-    TextView favoriteEmptyTextView;
-
     @BindView(R.id.bottomNavigationView)
     BottomNavigationViewEx mBottomNavigationViewEx;
 
     // TODO : 281) Defining variables
-    private ArrayList<Location> mFavouriteLocationArrayList = new ArrayList<>();
     public static final int FAVOURITE_LOCATION_DETAIL_LOADER = 100;
     private static final int ICON_NUMBER_MENU = 1;
 
@@ -65,6 +61,7 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
         bottomNavigationViewMenu();
         defineToolbar();
         defineLayout();
+
 
         // TODO : 284) Initialize loader Manager
         getSupportLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
@@ -146,10 +143,10 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
         Log.d(TAG, "bottomNavigationViewMenu is starting");
         BottomNavigationBar.setBottomBottomNavigationBar(mBottomNavigationViewEx);
 
-        // TODO 35 ) Providing navigation process between icons in BottomNavigationBar
+        // TODO 300 ) Providing navigation process between icons in BottomNavigationBar
         BottomNavigationBar.navitageIcon(this, this, mBottomNavigationViewEx);
 
-        // TODO 36 ) Showing Icon List
+        // TODO 301 ) Showing Icon List
         Menu menu = mBottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ICON_NUMBER_MENU);
         menuItem.setChecked(true);

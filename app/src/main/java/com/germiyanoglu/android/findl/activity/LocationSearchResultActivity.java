@@ -257,5 +257,5 @@ public class LocationSearchResultActivity extends AppCompatActivity{
 
     }
 
-    // TODO 302 ) -----------------------------------------------------------------------------------------------------
+
 }

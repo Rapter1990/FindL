@@ -164,5 +164,7 @@
     <!-- TODO : 288) Search Result Title -->
     <string name="search_title">Search Results</string>
     <string name="search_placeholder">Search</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

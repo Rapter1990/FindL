@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 305 ) Designing Favorite Location Widget List Item -->
+<RelativeLayout
+    android:id="@+id/location_list_item"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/location_item_background_color">
+
+    <ImageView
+        android:id="@+id/favorite_widget_location_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/location_icon"
+        android:src="@drawable/ic_location_white_icon"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/favorite_widget_location_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/favorite_widget_location_icon"
+        android:layout_toRightOf="@id/favorite_widget_location_icon">
+
+        <TextView
+            android:id="@+id/favorite_widget_location_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:textColor="@color/location_item_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Location Type"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/favorite_widget_location_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/favorite_widget_location_icon"
+        android:layout_toRightOf="@id/favorite_widget_location_icon"
+        android:layout_below="@+id/favorite_widget_location_type"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/favorite_widget_location_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/location_item_color"
+            android:textSize="14sp"
+            tools:text="Location Address"/>
+
+        <TextView
+            android:id="@+id/favorite_widget_location_open_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/location_item_color"
+            android:textSize="14sp"
+            tools:text="Location Status"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/favorite_widget_location_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/favorite_widget_location_detail_container"
+        android:layout_marginTop="5dp"
+        android:background="@color/location_item_line_color"/>
+
+</RelativeLayout>

@@ -7,7 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -52,6 +55,7 @@ import static com.germiyanoglu.android.findl.utils.UtilMethods.getPhoneCallPermi
 public class LocationInformationAbout extends Fragment implements OnMapReadyCallback {
 
     private static final String TAG = LocationInformationAbout.class.getName();
+
 
     // TODO : 156 ) Defining attributes of LocationInformationAbout
 
@@ -299,10 +303,21 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
             public void onClick(View v) {
                 Log.d(TAG, "mFavoriteIcon is clicked");
 
-                // TODO : 179 ) Checking whether favorite icon is empty icon or not
-                if(mFavoriteIcon.getDrawable().getConstantState().equals(
+                final Bitmap FavoriteImageviewBitmap = ((BitmapDrawable)mFavoriteIcon.getDrawable()).getBitmap();
+                Drawable myDrawable = getResources().getDrawable(R.drawable.ic_favorite_white_border);
+                final Bitmap favoriteWhiteBitmap = ((BitmapDrawable) myDrawable).getBitmap();
+
+                Log.d(TAG,"Favorite Icon : " + mFavoriteIcon.getDrawable().getConstantState());
+                Log.d(TAG,"Comparison Icon : " + ContextCompat.getDrawable(getActivity(),
+                        R.drawable.ic_favorite_white_border).getConstantState());
+
+
+                /*mFavoriteIcon.getDrawable().getConstantState().equals(
                         ContextCompat.getDrawable(getActivity(),
-                                R.drawable.ic_favorite_white_border).getConstantState())){
+                                R.drawable.ic_favorite_white_border).getConstantState())*/
+
+                // TODO : 179 ) Checking whether favorite icon is empty icon or not
+                if(FavoriteImageviewBitmap.sameAs(favoriteWhiteBitmap)){
                     Log.d(TAG, "Converting Favorite White Border to Favorite Fill White");
                     // TODO : 180 ) Defining addLocation method to add it into database
                     addLocation(mLocation);

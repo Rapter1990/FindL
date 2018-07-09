@@ -220,7 +220,7 @@ public class Location implements Parcelable {
             int locationNameColumn = cursor.getColumnIndexOrThrow(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_NAME);
             int locationRatingColumn = cursor.getColumnIndexOrThrow(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_RATING);
             int locationStatusColumn = cursor.getColumnIndexOrThrow(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_OPENING_HOUR_STATUS);
-            int locationAddressColumn = cursor.getColumnIndexOrThrow(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_OPENING_HOUR_STATUS);
+            int locationAddressColumn = cursor.getColumnIndexOrThrow(LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ADDRESS);
 
             String locationName = cursor.getString(locationNameColumn);
             Double locationRating = cursor.getDouble(locationRatingColumn);

@@ -22,6 +22,7 @@ import com.germiyanoglu.android.findl.utils.UtilMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 // TODO : 124 ) Defining FavoriteLocationListItemAdapter to show locations as a favorites by defining CursorRecyclerViewAdapter
@@ -40,7 +41,7 @@ public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<F
     @Override
     public FavoriteLocationListItemAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.layout_location_main_list_item;
+        int layoutIdForListItem = R.layout.layout_location_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 
@@ -127,6 +128,7 @@ public class FavoriteLocationListItemAdapter extends CursorRecyclerViewAdapter<F
             ButterKnife.bind(this,itemView);
         }
 
+        @OnClick(R.id.location_list_item)
         @Override
         public void onClick(View v) {
             if (UtilMethods.isNetworkAvailable(mContext)) {

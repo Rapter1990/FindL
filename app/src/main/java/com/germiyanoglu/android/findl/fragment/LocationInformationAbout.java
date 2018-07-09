@@ -137,6 +137,8 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                     .into(mFavoriteIcon);
         }
 
+
+
         return view;
     }
 

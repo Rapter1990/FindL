@@ -14,14 +14,17 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.germiyanoglu.android.findl.R;
 import com.germiyanoglu.android.findl.adapter.FavoriteLocationListItemAdapter;
+import com.germiyanoglu.android.findl.bottomnavigationmenu.BottomNavigationBar;
 import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 
@@ -45,9 +48,13 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
     @BindView(R.id.favorite_location_list_empty_textview)
     TextView favoriteEmptyTextView;
 
+    @BindView(R.id.bottomNavigationView)
+    BottomNavigationViewEx mBottomNavigationViewEx;
+
     // TODO : 281) Defining variables
     private ArrayList<Location> mFavouriteLocationArrayList = new ArrayList<>();
     public static final int FAVOURITE_LOCATION_DETAIL_LOADER = 100;
+    private static final int ICON_NUMBER_MENU = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,7 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
         setContentView(R.layout.activity_favorite_location);
         ButterKnife.bind(this);
         mContext = FavoriteLocationActivity.this;
+        bottomNavigationViewMenu();
         defineToolbar();
         defineLayout();
 
@@ -130,5 +138,21 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         ((FavoriteLocationListItemAdapter) favoriteLocationRecyleView.getAdapter()).swapCursor(null);
+    }
+
+
+    // TODO : 299 ) Creating Bottom Navigation View Menu
+    private void bottomNavigationViewMenu() {
+        Log.d(TAG, "bottomNavigationViewMenu is starting");
+        BottomNavigationBar.setBottomBottomNavigationBar(mBottomNavigationViewEx);
+
+        // TODO 35 ) Providing navigation process between icons in BottomNavigationBar
+        BottomNavigationBar.navitageIcon(this, this, mBottomNavigationViewEx);
+
+        // TODO 36 ) Showing Icon List
+        Menu menu = mBottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ICON_NUMBER_MENU);
+        menuItem.setChecked(true);
+
     }
 }

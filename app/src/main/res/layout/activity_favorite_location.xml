@@ -1,41 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- TODO : 279) Designing Location List -->
-<RelativeLayout
-
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    tools:context=".activity.LocationListActivity">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/favorite_location_list_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/location_list_color"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/favorite_location_list_recycler_view"
-        android:layout_below="@id/location_list_toolbar"
-        android:background="@android:color/white"
+    <LinearLayout
+        android:id="@+id/main_screen_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.LocationListActivity"/>
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:context=".activity.LocationListActivity">
 
-    <TextView
-        android:id="@+id/favorite_location_list_empty_textview"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/favorite_location_list_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/location_list_color" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/main_screen_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/favorite_location_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/location_list_toolbar"
+                android:background="@android:color/white"
+                tools:context=".activity.LocationListActivity" />
+
+            <TextView
+                android:id="@+id/favorite_location_list_empty_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@drawable/ic_cloud_off_black"
+                android:gravity="center"
+                android:text="@string/no_place_found"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:visibility="gone" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:drawableTop="@drawable/ic_cloud_off_black"
-        android:gravity="center"
-        android:text="@string/no_place_found"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_screen_linearlayout">
 
-</RelativeLayout>
+        <include layout="@layout/layout_bottom_navigation_main" />
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -65,6 +65,10 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         remoteViews.setTextViewText(R.id.favorite_widget_location_address, favoriteLocation.getmLocationAddress());
         remoteViews.setTextViewText(R.id.favorite_widget_location_open_status, favoriteLocation.getmLocationOpeningHourStatus());
 
+        Log.d(TAG,"getViewAt / Location name : " + favoriteLocation.getmLocationName());
+        Log.d(TAG,"getViewAt / Location Address : " + favoriteLocation.getmLocationAddress());
+        Log.d(TAG,"getViewAt / Location Open Status : " + favoriteLocation.getmLocationOpeningHourStatus());
+
         return remoteViews;
     }
 

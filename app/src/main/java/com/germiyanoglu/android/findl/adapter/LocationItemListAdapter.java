@@ -98,11 +98,15 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
         symbols.setDecimalSeparator('.');
         DecimalFormat format = new DecimalFormat("#.##", symbols);
 
-        double totalDistance = 0.0;
+        Double totalDistance = 0.0;
         try {
             totalDistance = (double) format.parse(format.format(distance));
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+
+        if ( !(totalDistance instanceof Double) ) {
+            totalDistance = totalDistance.doubleValue();
         }
 
         // Location Distance

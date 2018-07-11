@@ -22,6 +22,7 @@
         android:layout_below="@+id/favorite_location_widget_list_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical"/>
 
 </RelativeLayout>

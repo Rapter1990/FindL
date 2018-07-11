@@ -66,6 +66,11 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/favorite_location_provider_info" />
         </receiver>
+
+        <service
+            android:name=".widget.FavoriteLocationWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
     </application>
 
 </manifest>

@@ -79,7 +79,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public int getViewTypeCount() {
-        return 0;
+        return 1;
     }
 
     @Override

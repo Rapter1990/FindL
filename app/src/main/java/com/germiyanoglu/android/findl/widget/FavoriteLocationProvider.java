@@ -29,7 +29,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 
         // TODO 308 ) Defining list_view for location
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
-        views.setRemoteAdapter(R.id.favorite_location_list_view, serviceIntent);
+        views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
         Log.d(TAG,"Defining FavoriteLocationWidgetService");
 
         // TODO 309 ) Sending location to its detail side
@@ -47,7 +47,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Log.d(TAG,"Providing PendingIntent");
 
         // TODO 311 ) Giving onClick feature to pending intent
-        views.setOnClickPendingIntent(R.id.favorite_location_relativelayout,pendingIntent);
+        views.setOnClickPendingIntent(R.id.favorite_location_widget_relativelayout,pendingIntent);
         Log.d(TAG,"Adding onClick event");
 
         // Instruct the widget manager to update the widget

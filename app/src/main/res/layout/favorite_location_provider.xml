@@ -1,14 +1,14 @@
 <!-- TODO 304 ) Designing Favorite Location Provider -->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/favorite_location_relativelayout"
+    android:id="@+id/favorite_location_widget_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fb9700"
     android:padding="@dimen/widget_margin">
 
     <TextView
-        android:id="@+id/favorite_location_list_title"
+        android:id="@+id/favorite_location_widget_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Favorite Location List"
@@ -18,8 +18,8 @@
 
     <ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/favorite_location_list_view"
-        android:layout_below="@+id/favorite_location_list_title"
+        android:id="@+id/favorite_location_widget_list_view"
+        android:layout_below="@+id/favorite_location_widget_list_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"/>

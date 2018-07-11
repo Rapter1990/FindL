@@ -83,7 +83,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     // TODO 313 ) Getting favorite location from database
@@ -167,6 +167,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
             favoritelocationCursor.close();
         }
 
+        Log.d(TAG,"Favorite Location Size : " + locationlist.size());
         return locationlist;
     }
 }

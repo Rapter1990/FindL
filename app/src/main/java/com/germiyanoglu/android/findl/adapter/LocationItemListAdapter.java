@@ -90,6 +90,10 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
 
         Log.d(TAG,"Distance Calculation : " + distance);
 
+        if ( !(distance instanceof Double) ) {
+            distance = distance.doubleValue();
+        }
+
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
         symbols.setDecimalSeparator('.');
         DecimalFormat format = new DecimalFormat("#.##", symbols);

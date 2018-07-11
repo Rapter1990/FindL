@@ -57,6 +57,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
                 R.layout.favorite_location_list_widget);
 
         Location favoriteLocation = mFavouriteLocationWidgetArrayList.get(position);
+        Log.d(TAG,"Context : " + favoriteLocation.toString());
 
         remoteViews.setTextViewText(R.id.favorite_widget_location_name, favoriteLocation.getmLocationName());
         remoteViews.setTextViewText(R.id.favorite_widget_location_address, favoriteLocation.getmLocationAddress());

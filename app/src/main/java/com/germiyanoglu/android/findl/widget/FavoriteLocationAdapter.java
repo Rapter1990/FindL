@@ -73,6 +73,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         Log.d(TAG,"getViewAt / Location Open Status : " + favoriteLocation.getmLocationOpeningHourStatus());
 
         Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
+        Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
         currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
                 favoriteLocation.getmLocationId());
         remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);

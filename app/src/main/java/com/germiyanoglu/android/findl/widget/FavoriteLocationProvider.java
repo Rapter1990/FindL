@@ -73,5 +73,20 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
+    /*@Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+
+        String locationId = intent.getExtras().getString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT);
+        Log.d(TAG,"Location Id coming from FavoriteLocationAdapter : " + locationId);
+
+        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
+
+        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
+                locationId);
+
+        context.startActivity(currentLocationDetailIntent);
+
+    }*/
 }
 

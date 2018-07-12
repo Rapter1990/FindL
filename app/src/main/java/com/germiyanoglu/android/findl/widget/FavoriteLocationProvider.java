@@ -73,18 +73,5 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
-    /*@Override
-    public void onReceive(Context context, Intent intent) {
-
-        String id = intent.getExtras().getString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT);
-
-        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
-        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
-                id);
-        context.startActivity(currentLocationDetailIntent);
-
-        super.onReceive(context, intent);
-    }*/
 }
 

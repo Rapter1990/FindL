@@ -11,6 +11,7 @@ import android.widget.RemoteViews;
 
 import com.germiyanoglu.android.findl.R;
 import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
+import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 
 /**
  * Implementation of App Widget functionality.
@@ -70,6 +71,20 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
+    @Override
+    public void onReceive(Context context, Intent intent) {
+
+        String id = intent.getExtras().getString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT);
+
+        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
+        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
+                id);
+        context.startActivity(currentLocationDetailIntent);
+
+        super.onReceive(context, intent);
     }
 }
 

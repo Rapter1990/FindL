@@ -75,7 +75,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
         currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
                 favoriteLocation.getmLocationId());
-        remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item,currentLocationDetailIntent);
+        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
         Log.d(TAG,"getViewAt / LocationDetailActivity is opening ");
 

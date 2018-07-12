@@ -20,6 +20,7 @@ import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 public class FavoriteLocationProvider extends AppWidgetProvider {
 
     private static final String TAG = FavoriteLocationProvider.class.getName();
+    public static final String EXTRA_ITEM = "com.germiyanoglu.android.findl.widget.EXTRA_ITEM";
 
     // TODO 303 ) Updating Widget with WidgetService for updating listview and
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -32,6 +33,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
         views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
         Log.d(TAG,"Defining FavoriteLocationWidgetService");
+
 
         // TODO 309 ) Sending location to its detail side
         Intent intent = new Intent(context, LocationDetailActivity.class);
@@ -53,6 +55,28 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
+
+        // TODO 309 ) Sending location to its detail side
+//        Intent intent = new Intent(context, FavoriteLocationProvider.class);
+//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+//
+//        Log.d(TAG,"Sending location to its detail side");
+//
+//        // TODO 310 ) Providing PendingIntent to work with its provider layout
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+//                context,
+//                0,
+//                intent,
+//                PendingIntent.FLAG_UPDATE_CURRENT);
+//        Log.d(TAG,"Providing PendingIntent");
+//
+//        // TODO 311 ) Giving onClick feature to pending intent
+//        views.setOnClickPendingIntent(R.id.favorite_location_widget_list_view,pendingIntent);
+//        Log.d(TAG,"Adding onClick event");
+//
+//        // Instruct the widget manager to update the widget
+//        appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
@@ -73,20 +97,16 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    /*@Override
-    public void onReceive(Context context, Intent intent) {
-        super.onReceive(context, intent);
-
-        String locationId = intent.getExtras().getString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT);
-        Log.d(TAG,"Location Id coming from FavoriteLocationAdapter : " + locationId);
-
-        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
-
-        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
-                locationId);
-
-        context.startActivity(currentLocationDetailIntent);
-
-    }*/
+    // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
+//    @Override
+//    public void onReceive(Context context, Intent intent) {
+//
+//        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
+//
+//        currentLocationDetailIntent.putExtra(EXTRA_ITEM, intent.getStringExtra(EXTRA_ITEM));
+//        context.startActivity(currentLocationDetailIntent);
+//
+//        super.onReceive(context, intent);
+//    }
 }
 

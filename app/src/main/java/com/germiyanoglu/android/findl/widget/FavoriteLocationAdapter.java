@@ -3,6 +3,7 @@ package com.germiyanoglu.android.findl.widget;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -70,7 +71,9 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
         Log.d(TAG,"getViewAt / Location name : " + favoriteLocation.getmLocationName());
         Log.d(TAG,"getViewAt / Location Address : " + favoriteLocation.getmLocationAddress());
-        Log.d(TAG,"getViewAt / Location Open Status : " + favoriteLocation.getmLocationOpeningHourStatus());
+        Log.d(TAG,"getViewAt / Location Open Status :        " + favoriteLocation.getmLocationOpeningHourStatus());
+        Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
+
 
         Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
         Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
@@ -78,7 +81,15 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
                 favoriteLocation.getmLocationId());
         remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
+//        Bundle extras = new Bundle();
+//        extras.putString(FavoriteLocationProvider.EXTRA_ITEM, favoriteLocation.getmLocationId());
+//        Intent fillInIntent = new Intent();
+//        fillInIntent.putExtras(extras);
+//        remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
+
         Log.d(TAG,"getViewAt / LocationDetailActivity is opening ");
+
+
 
         return remoteViews;
     }

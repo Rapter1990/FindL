@@ -1,14 +1,17 @@
 package com.germiyanoglu.android.findl.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.germiyanoglu.android.findl.R;
+import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
 import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
+import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 
 import java.util.ArrayList;
 
@@ -68,6 +71,11 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         Log.d(TAG,"getViewAt / Location name : " + favoriteLocation.getmLocationName());
         Log.d(TAG,"getViewAt / Location Address : " + favoriteLocation.getmLocationAddress());
         Log.d(TAG,"getViewAt / Location Open Status : " + favoriteLocation.getmLocationOpeningHourStatus());
+
+        /*Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
+        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
+                favoriteLocation.getmLocationId());
+        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);*/
 
         return remoteViews;
     }

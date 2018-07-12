@@ -17,7 +17,6 @@
         android:gravity="center"/>
 
     <ListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/favorite_location_widget_list_view"
         android:layout_below="@+id/favorite_location_widget_list_title"
         android:layout_width="match_parent"

@@ -5,12 +5,14 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.germiyanoglu.android.findl.R;
 import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
+import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 
 /**
@@ -20,25 +22,34 @@ import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 public class FavoriteLocationProvider extends AppWidgetProvider {
 
     private static final String TAG = FavoriteLocationProvider.class.getName();
-    public static final String EXTRA_ITEM = "com.germiyanoglu.android.findl.widget.EXTRA_ITEM";
+    private static Location location = null;
 
     // TODO 303 ) Updating Widget with WidgetService for updating listview and
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
+
+        location = FavoriteLocationAdapter.getCurrentLocationPreference(context,appWidgetId);
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.favorite_location_provider);
-        Log.d(TAG,"Constructing favorite_location_provider");
+        Log.d(TAG, "Constructing favorite_location_provider");
 
         // TODO 308 ) Defining list_view for location
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
         views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
-        Log.d(TAG,"Defining FavoriteLocationWidgetService");
+        Log.d(TAG, "Defining FavoriteLocationWidgetService");
 
 
         // TODO 309 ) Sending location to its detail side
+        Bundle extras = new Bundle();
+        extras.putString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT, location.getmLocationId());
         Intent intent = new Intent(context, LocationDetailActivity.class);
+        intent.putExtras(extras);
+
+        /*Intent intent = new Intent(context, LocationDetailActivity.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);*/
+
         Log.d(TAG,"Sending location to its detail side");
 
         // TODO 310 ) Providing PendingIntent to work with its provider layout
@@ -57,11 +68,11 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
 
-        // TODO 309 ) Sending location to its detail side
+//        // TODO 309 ) Sending location to its detail side
 //        Intent intent = new Intent(context, FavoriteLocationProvider.class);
 //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //
-//        Log.d(TAG,"Sending location to its detail side");
+//        Log.d(TAG, "Sending location to its detail side");
 //
 //        // TODO 310 ) Providing PendingIntent to work with its provider layout
 //        PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -69,14 +80,14 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 //                0,
 //                intent,
 //                PendingIntent.FLAG_UPDATE_CURRENT);
-//        Log.d(TAG,"Providing PendingIntent");
+//        Log.d(TAG, "Providing PendingIntent");
 //
 //        // TODO 311 ) Giving onClick feature to pending intent
-//        views.setOnClickPendingIntent(R.id.favorite_location_widget_list_view,pendingIntent);
-//        Log.d(TAG,"Adding onClick event");
-//
-//        // Instruct the widget manager to update the widget
-//        appWidgetManager.updateAppWidget(appWidgetId, views);
+//        views.setOnClickPendingIntent(R.id.favorite_location_widget_relativelayout, pendingIntent);
+//        Log.d(TAG, "Adding onClick event");
+
+        // Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
@@ -100,13 +111,18 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
 //    @Override
 //    public void onReceive(Context context, Intent intent) {
+//        Log.d(TAG, "onReceive is calling");
+//
+//        String locationId = location.getmLocationId();
 //
 //        Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
 //
-//        currentLocationDetailIntent.putExtra(EXTRA_ITEM, intent.getStringExtra(EXTRA_ITEM));
+//        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT, locationId);
+//
 //        context.startActivity(currentLocationDetailIntent);
 //
 //        super.onReceive(context, intent);
+//
 //    }
 }
 

@@ -1,7 +1,9 @@
 package com.germiyanoglu.android.findl.widget;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
 import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,12 @@ import java.util.ArrayList;
 public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFactory {
 
     private static final String TAG = FavoriteLocationAdapter.class.getName();
+
+    private static final String PREFS_NAME = "FavoriteLocationWidget";
+    private static final String PREF_PREFIX_KEY = "locationWidget";
+    private static final String PREF_LOCATION_KEY = "currentLocation";
+
+    int appwidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     // TODO 312 ) Defining context and location arraylist
     private Context mContext;
@@ -33,6 +42,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
     @Override
     public void onCreate() {
         mFavouriteLocationWidgetArrayList = getFavoriteLocationArrayList();
+
     }
 
     @Override
@@ -75,17 +85,27 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
 
 
-        Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
-        Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
-        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
-                favoriteLocation.getmLocationId());
-        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
+//        Intent currentLocationDetailIntent = new Intent(mContext, LocationDetailActivity.class);
+//        Log.d(TAG,"getViewAt / Location Id : " + favoriteLocation.getmLocationId());
+//        currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
+//                favoriteLocation.getmLocationId());
+//        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
-//        Bundle extras = new Bundle();
-//        extras.putString(FavoriteLocationProvider.EXTRA_ITEM, favoriteLocation.getmLocationId());
-//        Intent fillInIntent = new Intent();
-//        fillInIntent.putExtras(extras);
-//        remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
+
+
+        Bundle extras = new Bundle();
+        if (extras != null) {
+            appwidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+        }
+
+        saveLocationIdPreference(mContext,
+                appwidgetId,
+                favoriteLocation.getmLocationId(),
+                favoriteLocation);
+
+        Intent fillInIntent = new Intent();
+        fillInIntent.putExtras(extras);
+        remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
 
         Log.d(TAG,"getViewAt / LocationDetailActivity is opening ");
 
@@ -200,4 +220,28 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         Log.d(TAG,"Favorite Location Size : " + locationlist.size());
         return locationlist;
     }
+
+    public static void saveLocationIdPreference(Context context,int appWidgetId, String locationId, Location favoriteLocation){
+
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.putString(PREF_PREFIX_KEY + appWidgetId, locationId);
+        Gson gson = new Gson();
+        String json = gson.toJson(favoriteLocation);
+        prefs.putString(PREF_LOCATION_KEY + appWidgetId, json);
+        prefs.apply();
+        Log.d(TAG,"Location Id saved: " + locationId);
+
+    }
+
+    public static Location getCurrentLocationPreference(Context context , int appWidgetId) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        String json = prefs.getString(PREF_LOCATION_KEY + appWidgetId, null);
+        Gson gson = new Gson();
+        Location currentLocation = gson.fromJson(json, Location.class);
+        Log.d(TAG,"Current Location : " + currentLocation);
+        return currentLocation;
+    }
+
+
+
 }

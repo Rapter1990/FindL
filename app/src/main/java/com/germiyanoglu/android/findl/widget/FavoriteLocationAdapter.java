@@ -15,7 +15,6 @@ import com.germiyanoglu.android.findl.activity.LocationDetailActivity;
 import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -92,18 +91,12 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 //        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
 
-
-        Bundle extras = new Bundle();
-        if (extras != null) {
-            appwidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-        }
-
-        saveLocationIdPreference(mContext,
-                appwidgetId,
-                favoriteLocation.getmLocationId(),
-                favoriteLocation);
-
         Intent fillInIntent = new Intent();
+        fillInIntent.putExtra(FavoriteLocationProvider.EXTRA_ITEM, favoriteLocation.getmLocationId());
+        Bundle extras = new Bundle();
+        appwidgetId = fillInIntent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+                AppWidgetManager.INVALID_APPWIDGET_ID);
+        extras.putInt(AppWidgetManager.EXTRA_APPWIDGET_ID, appwidgetId);
         fillInIntent.putExtras(extras);
         remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
 
@@ -221,26 +214,6 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
         return locationlist;
     }
 
-    public static void saveLocationIdPreference(Context context,int appWidgetId, String locationId, Location favoriteLocation){
-
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, locationId);
-        Gson gson = new Gson();
-        String json = gson.toJson(favoriteLocation);
-        prefs.putString(PREF_LOCATION_KEY + appWidgetId, json);
-        prefs.apply();
-        Log.d(TAG,"Location Id saved: " + locationId);
-
-    }
-
-    public static Location getCurrentLocationPreference(Context context , int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        String json = prefs.getString(PREF_LOCATION_KEY + appWidgetId, null);
-        Gson gson = new Gson();
-        Location currentLocation = gson.fromJson(json, Location.class);
-        Log.d(TAG,"Current Location : " + currentLocation);
-        return currentLocation;
-    }
 
 
 

@@ -82,7 +82,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
+    // TODO 316 ) Handling click event via data coming from FavoriteLocationAdapter
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive is calling");
@@ -102,7 +102,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 
     }
 
-    // TODO 316 ) Updating Widget
+    // TODO 317 ) Updating Widget
     private void updateWidget(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));

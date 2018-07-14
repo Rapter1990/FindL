@@ -44,7 +44,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // TODO 309 ) Sending location to its detail side
         Intent intent = new Intent(context, FavoriteLocationProvider.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        intent.setAction(UPDATE_LIST);
+        //intent.setAction(UPDATE_LIST);
         Log.d(TAG, "Sending location to its detail side");
 
         // TODO 310 ) Providing PendingIntent to work with its provider layout
@@ -87,9 +87,9 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive is calling");
         Log.d(TAG, "Location Id from Intent : " + intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));
-        if(intent.getAction().equalsIgnoreCase(UPDATE_LIST)){
+        /*if(intent.getAction().equalsIgnoreCase(UPDATE_LIST)){
             updateWidget(context);
-        }
+        }*/
         Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
         currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
                 intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));

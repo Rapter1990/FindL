@@ -23,15 +23,10 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
     private static final String TAG = FavoriteLocationAdapter.class.getName();
 
-    private static final String PREFS_NAME = "FavoriteLocationWidget";
-    private static final String PREF_PREFIX_KEY = "locationWidget";
-    private static final String PREF_LOCATION_KEY = "currentLocation";
-
-    int appwidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-
     // TODO 312 ) Defining context and location arraylist
     private Context mContext;
     private ArrayList<Location> mFavouriteLocationWidgetArrayList = new ArrayList<>();
+
 
     public FavoriteLocationAdapter(Context context) {
         mContext = context;
@@ -90,10 +85,13 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 //                favoriteLocation.getmLocationId());
 //        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
+
+
         Bundle extras = new Bundle();
         extras.putString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT, favoriteLocation.getmLocationId());
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
+        fillInIntent.setAction(FavoriteLocationProvider.ACTION_EXTRA);
         remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
 
         Log.d(TAG,"getViewAt / LocationDetailActivity is opening ");

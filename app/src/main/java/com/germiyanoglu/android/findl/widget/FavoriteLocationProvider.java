@@ -22,7 +22,7 @@ import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 public class FavoriteLocationProvider extends AppWidgetProvider {
 
     private static final String TAG = FavoriteLocationProvider.class.getName();
-    public static final String EXTRA_ITEM = "com.germiyanoglu.android.findl.widget.EXTRA_ITEM";
+    public static final String ACTION_EXTRA = "com.germiyanoglu.android.findl.ACTION_EXTRA";
 
     // TODO 303 ) Updating Widget with WidgetService for updating listview and
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -35,11 +35,11 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 
         // TODO 308 ) Defining list_view for location
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
-        serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
+        views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
         Log.d(TAG, "Defining FavoriteLocationWidgetService");
 
 
-//        // TODO 309 ) Sending location to its detail side
+        // TODO 309 ) Sending location to its detail side
 //        Intent intent = new Intent(context, LocationDetailActivity.class);
 //        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -76,7 +76,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Log.d(TAG, "Providing PendingIntent");
 
         // TODO 311 ) Giving onClick feature to pending intent
-        views.setOnClickPendingIntent(R.id.favorite_location_widget_list_view, pendingIntent);
+        views.setOnClickPendingIntent(R.id.favorite_location_widget_relativelayout, pendingIntent);
         Log.d(TAG, "Adding onClick event");
 
         // Instruct the widget manager to update the widget
@@ -104,13 +104,18 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     // TODO 315 ) Handling click event via data coming from FavoriteLocationAdapter
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Log.d(TAG, "onReceive is calling");
         Log.d(TAG, "Location Id from Intent : " + intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));
         Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
         currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
                 intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));
-        context.startActivity(currentLocationDetailIntent);
+        //context.startActivity(currentLocationDetailIntent);
+        if (intent.getAction().equals(ACTION_EXTRA))
+            context.startActivity(currentLocationDetailIntent);
+
         super.onReceive(context, intent);
+
     }
 }
 

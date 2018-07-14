@@ -36,7 +36,6 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // TODO 308 ) Defining list_view for location
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
         serviceIntent.setData(Uri.parse(serviceIntent.toUri(Intent.URI_INTENT_SCHEME)));
-        views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
         Log.d(TAG, "Defining FavoriteLocationWidgetService");
 
 
@@ -77,7 +76,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Log.d(TAG, "Providing PendingIntent");
 
         // TODO 311 ) Giving onClick feature to pending intent
-        views.setOnClickPendingIntent(R.id.favorite_location_widget_relativelayout, pendingIntent);
+        views.setOnClickPendingIntent(R.id.favorite_location_widget_list_view, pendingIntent);
         Log.d(TAG, "Adding onClick event");
 
         // Instruct the widget manager to update the widget
@@ -106,12 +105,12 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive is calling");
-        Log.d(TAG, "Location Id from Intent : " + intent.getStringExtra(EXTRA_ITEM));
+        Log.d(TAG, "Location Id from Intent : " + intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));
         Intent currentLocationDetailIntent = new Intent(context, LocationDetailActivity.class);
         currentLocationDetailIntent.putExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT,
-                intent.getStringExtra(EXTRA_ITEM));
+                intent.getStringExtra(GoogleMapApi.LOCATION_ID_EXTRA_TEXT));
         context.startActivity(currentLocationDetailIntent);
-
+        super.onReceive(context, intent);
     }
 }
 

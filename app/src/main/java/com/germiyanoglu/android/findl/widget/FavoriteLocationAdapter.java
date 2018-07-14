@@ -90,19 +90,13 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 //                favoriteLocation.getmLocationId());
 //        remoteViews.setOnClickFillInIntent(R.id.favorite_location_widget_list_view,currentLocationDetailIntent);
 
-
-        Intent fillInIntent = new Intent();
-        fillInIntent.putExtra(FavoriteLocationProvider.EXTRA_ITEM, favoriteLocation.getmLocationId());
         Bundle extras = new Bundle();
-        appwidgetId = fillInIntent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-                AppWidgetManager.INVALID_APPWIDGET_ID);
-        extras.putInt(AppWidgetManager.EXTRA_APPWIDGET_ID, appwidgetId);
+        extras.putString(GoogleMapApi.LOCATION_ID_EXTRA_TEXT, favoriteLocation.getmLocationId());
+        Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
         remoteViews.setOnClickFillInIntent(R.id.location_list_widget_item, fillInIntent);
 
         Log.d(TAG,"getViewAt / LocationDetailActivity is opening ");
-
-
 
         return remoteViews;
     }

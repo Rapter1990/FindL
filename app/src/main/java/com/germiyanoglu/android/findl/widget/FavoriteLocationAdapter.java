@@ -200,5 +200,4 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
 
 
-
 }

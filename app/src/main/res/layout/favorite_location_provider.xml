@@ -11,7 +11,7 @@
         android:id="@+id/favorite_location_widget_list_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Favorite Location List"
+        android:text="@string/favorite_location_list"
         android:textSize="25sp"
         android:padding="5dp"
         android:gravity="center"/>

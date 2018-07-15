@@ -166,5 +166,6 @@
     <string name="search_placeholder">Search</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="favorite_location_list">Favorite Location List</string>
 
 </resources>

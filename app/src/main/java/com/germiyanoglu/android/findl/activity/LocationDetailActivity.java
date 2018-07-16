@@ -83,9 +83,9 @@ public class LocationDetailActivity extends AppCompatActivity {
         defineLocationUrl();
 
         // TODO 270 ) Define getAllLocationInformationFromJSON
-        getAllLocationInformationFromJSON(mCurrentLocationDetailUrl);
+        //getAllLocationInformationFromJSON(mCurrentLocationDetailUrl);
 
-        //new JSONParse().execute();
+        new JSONParse().execute();
     }
 
 
@@ -274,7 +274,9 @@ public class LocationDetailActivity extends AppCompatActivity {
 
             URL url;
             try {
+                Log.d(TAG, "url : " + mCurrentLocationDetailUrl);
                 url = new URL(mCurrentLocationDetailUrl);
+                urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET"); //Your method here
                 urlConnection.connect();
 

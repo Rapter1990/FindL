@@ -24,7 +24,6 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
 
     private static final String TAG = FavoriteLocationProvider.class.getName();
     public static final String ACTION_EXTRA = "com.germiyanoglu.android.findl.ACTION_EXTRA";
-    public static final String UPDATE_LIST  = "update_list";
 
     // TODO 303 ) Updating Widget with WidgetService for updating listview and
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -44,7 +43,6 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         // TODO 309 ) Sending location to its detail side
         Intent intent = new Intent(context, FavoriteLocationProvider.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        intent.setAction(UPDATE_LIST);
         Log.d(TAG, "Sending location to its detail side");
 
         // TODO 310 ) Providing PendingIntent to work with its provider layout
@@ -93,22 +91,20 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_EXTRA))
             context.startActivity(currentLocationDetailIntent);
 
+        updateWidget(context);
+
         super.onReceive(context, intent);
 
-         if(intent.getAction().equals(UPDATE_LIST)){
-            updateWidget(context);
-        }
 
     }
 
     // TODO 317 ) Updating Widget
     private void updateWidget(Context context) {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
         int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
+        if (appWidgetIds != null && appWidgetIds.length > 0) {
+            onUpdate(context, appWidgetManager, appWidgetIds);
         }
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.favorite_location_widget_list_view);
     }
 }
 

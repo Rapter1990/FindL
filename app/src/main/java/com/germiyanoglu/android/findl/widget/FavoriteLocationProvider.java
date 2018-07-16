@@ -59,6 +59,8 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         views.setPendingIntentTemplate(R.id.favorite_location_widget_list_view, pendingIntent);
         Log.d(TAG, "Adding onClick event");
 
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.favorite_location_widget_list_view);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

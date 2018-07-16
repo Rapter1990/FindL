@@ -305,6 +305,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
             public void onClick(View v) {
                 Log.d(TAG, "mFavoriteIcon is clicked");
 
+                // TODO 317 ) Updating Widget
                 Intent intent = new Intent(getActivity(),FavoriteLocationProvider.class);
                 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());

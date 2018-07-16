@@ -71,15 +71,6 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
         getSupportLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
                 FavoriteLocationActivity.this);
 
-
-        // TODO 317 ) Updating Widget
-        Intent intent = new Intent(this,FavoriteLocationProvider.class);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        ComponentName thisWidget = new ComponentName(getApplicationContext(), FavoriteLocationProvider.class);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-        sendBroadcast(intent);
     }
 
 

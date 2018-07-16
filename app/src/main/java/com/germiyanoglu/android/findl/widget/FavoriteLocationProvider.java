@@ -3,6 +3,7 @@ package com.germiyanoglu.android.findl.widget;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Intent serviceIntent = new Intent(context, FavoriteLocationWidgetService.class);
         views.setRemoteAdapter(R.id.favorite_location_widget_list_view, serviceIntent);
         Log.d(TAG, "Defining FavoriteLocationWidgetService");
+
 
 
         // TODO 309 ) Sending location to its detail side
@@ -91,20 +93,18 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_EXTRA))
             context.startActivity(currentLocationDetailIntent);
 
-        updateWidget(context);
+        // TODO 317 ) Updating Widget
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
+        int[] appWidgetIds = widgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
+        Intent updateIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, context.getApplicationContext(), FavoriteLocationProvider.class);
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        context.sendBroadcast(updateIntent);
+
 
         super.onReceive(context, intent);
 
 
     }
 
-    // TODO 317 ) Updating Widget
-    private void updateWidget(Context context) {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
-        int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
-        if (appWidgetIds != null && appWidgetIds.length > 0) {
-            onUpdate(context, appWidgetManager, appWidgetIds);
-        }
-    }
 }
 

@@ -168,4 +168,8 @@
     <string name="add_widget">Add widget</string>
     <string name="favorite_location_list">Favorite Location List</string>
 
+    <string name="location_distance_start">~ </string>
+    <string name="location_distance_end"> Km</string>
+
+
 </resources>

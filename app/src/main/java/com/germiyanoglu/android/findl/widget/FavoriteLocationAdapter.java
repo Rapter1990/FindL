@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Binder;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -26,6 +27,7 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
     // TODO 312 ) Defining context and location arraylist
     private Context mContext;
     private ArrayList<Location> mFavouriteLocationWidgetArrayList = new ArrayList<>();
+    private Cursor mCursor;
 
 
     public FavoriteLocationAdapter(Context context) {

@@ -111,7 +111,9 @@ public class LocationItemListAdapter extends RecyclerView.Adapter<LocationItemLi
 
         // Location Distance
         String distanceBetweenTwoPlace = String.valueOf(totalDistance);
-        holder.mLocationDistanceTextView.setText("~ " + distanceBetweenTwoPlace + " Km");
+        holder.mLocationDistanceTextView.setText(
+                mContext.getResources().getString(R.string.location_distance_start) + distanceBetweenTwoPlace
+                        + mContext.getResources().getString(R.string.location_distance_end));
 
         // Location Name
         holder.mLocationNameTextView.setText(mNearByLocationArrayList.get(position).getmLocationName());

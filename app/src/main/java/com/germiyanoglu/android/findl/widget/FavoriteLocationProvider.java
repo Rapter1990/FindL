@@ -41,6 +41,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Log.d(TAG, "Defining FavoriteLocationWidgetService");
 
 
+        updateWidget(context);
 
         // TODO 309 ) Sending location to its detail side
         Intent intent = new Intent(context, FavoriteLocationProvider.class);
@@ -93,18 +94,25 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_EXTRA))
             context.startActivity(currentLocationDetailIntent);
 
-        // TODO 317 ) Updating Widget
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
-        int[] appWidgetIds = widgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
-        Intent updateIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, context.getApplicationContext(), FavoriteLocationProvider.class);
-        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-        context.sendBroadcast(updateIntent);
-
+        if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
+            // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
+            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
+            for (int appWidgetId : appWidgetIds) {
+                updateAppWidget(context, appWidgetManager, appWidgetId);
+            }
+        }
 
         super.onReceive(context, intent);
 
 
     }
 
+    // TODO 317 ) Updating Widget
+    public static void updateWidget(Context context){
+        Intent updateIntent = new Intent(context,FavoriteLocationProvider.class);
+        updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+
+    }
 }
 

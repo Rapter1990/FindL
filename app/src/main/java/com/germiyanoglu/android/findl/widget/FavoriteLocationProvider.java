@@ -95,7 +95,10 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             context.startActivity(currentLocationDetailIntent);
 
         if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
-
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.favorite_location_provider);
+            ComponentName thisWidget = new ComponentName(context, FavoriteLocationProvider.class);
+            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
         }
 
         super.onReceive(context, intent);

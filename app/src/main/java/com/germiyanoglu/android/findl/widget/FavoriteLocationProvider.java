@@ -59,6 +59,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         views.setPendingIntentTemplate(R.id.favorite_location_widget_list_view, pendingIntent);
         Log.d(TAG, "Adding onClick event");
 
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.favorite_location_widget_list_view);
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
@@ -99,7 +100,6 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
             ComponentName thisWidget = new ComponentName(context.getApplicationContext(), FavoriteLocationProvider.class);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.favorite_location_widget_list_view);
             if (appWidgetIds != null && appWidgetIds.length > 0) {
                 Log.d(TAG, "onUpdate is calling");
                 onUpdate(context, appWidgetManager, appWidgetIds);

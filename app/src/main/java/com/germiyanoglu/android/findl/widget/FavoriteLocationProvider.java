@@ -99,6 +99,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             ComponentName thisWidget = new ComponentName(context.getApplicationContext(), FavoriteLocationProvider.class);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
             if (appWidgetIds != null && appWidgetIds.length > 0) {
+                Log.d(TAG, "onUpdate is calling");
                 onUpdate(context, appWidgetManager, appWidgetIds);
             }
         }

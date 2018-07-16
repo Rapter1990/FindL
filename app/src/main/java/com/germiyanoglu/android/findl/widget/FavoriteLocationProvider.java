@@ -41,6 +41,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         Log.d(TAG, "Defining FavoriteLocationWidgetService");
 
 
+
         // TODO 309 ) Sending location to its detail side
         Intent intent = new Intent(context, FavoriteLocationProvider.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
@@ -93,6 +94,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             context.startActivity(currentLocationDetailIntent);
 
         if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
+            Log.d(TAG, " ACTION_APPWIDGET_UPDATE is calling ");
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
             ComponentName thisWidget = new ComponentName(context.getApplicationContext(), FavoriteLocationProvider.class);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);

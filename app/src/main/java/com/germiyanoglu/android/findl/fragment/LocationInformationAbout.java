@@ -1,6 +1,8 @@
 package com.germiyanoglu.android.findl.fragment;
 
 import android.Manifest;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,6 +35,7 @@ import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
 import com.germiyanoglu.android.findl.utils.GoogleMapApi;
 import com.germiyanoglu.android.findl.utils.UtilMethods;
+import com.germiyanoglu.android.findl.widget.FavoriteLocationProvider;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -302,6 +305,13 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
             public void onClick(View v) {
                 Log.d(TAG, "mFavoriteIcon is clicked");
 
+                Intent intent = new Intent(getActivity(),FavoriteLocationProvider.class);
+                intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+                ComponentName thisWidget = new ComponentName(getActivity(), FavoriteLocationProvider.class);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+                getActivity().sendBroadcast(intent);
 
                 final Bitmap FavoriteImageviewBitmap = ((BitmapDrawable)mFavoriteIcon.getDrawable()).getBitmap();
                 Drawable myDrawable = getResources().getDrawable(R.drawable.ic_favorite_white_border);

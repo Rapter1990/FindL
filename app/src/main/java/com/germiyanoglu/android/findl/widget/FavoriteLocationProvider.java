@@ -95,12 +95,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             context.startActivity(currentLocationDetailIntent);
 
         if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
-            // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
-            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
-            for (int appWidgetId : appWidgetIds) {
-                updateAppWidget(context, appWidgetManager, appWidgetId);
-            }
+
         }
 
         super.onReceive(context, intent);
@@ -112,7 +107,11 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
     public static void updateWidget(Context context){
         Intent updateIntent = new Intent(context,FavoriteLocationProvider.class);
         updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-
+        // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
+        int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
+        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        context.sendBroadcast(updateIntent);
     }
 }
 

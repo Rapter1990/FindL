@@ -92,13 +92,14 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_EXTRA))
             context.startActivity(currentLocationDetailIntent);
 
-        // TODO 317 ) Updating Widget
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
-        int[] appWidgetIds = widgetManager.getAppWidgetIds(new ComponentName(context, FavoriteLocationProvider.class));
-        Intent updateIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null,
-                context.getApplicationContext(), FavoriteLocationProvider.class);
-        updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-        context.sendBroadcast(updateIntent);
+        if(intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)){
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
+            ComponentName thisWidget = new ComponentName(context.getApplicationContext(), FavoriteLocationProvider.class);
+            int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+            if (appWidgetIds != null && appWidgetIds.length > 0) {
+                onUpdate(context, appWidgetManager, appWidgetIds);
+            }
+        }
 
 
         super.onReceive(context, intent);

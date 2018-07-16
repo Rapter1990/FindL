@@ -56,7 +56,6 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
 
     private static final String TAG = LocationInformationAbout.class.getName();
 
-
     // TODO : 156 ) Defining attributes of LocationInformationAbout
 
     @BindView(R.id.location_information_phone_icon)
@@ -302,6 +301,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "mFavoriteIcon is clicked");
+
 
                 final Bitmap FavoriteImageviewBitmap = ((BitmapDrawable)mFavoriteIcon.getDrawable()).getBitmap();
                 Drawable myDrawable = getResources().getDrawable(R.drawable.ic_favorite_white_border);

@@ -1,6 +1,9 @@
 package com.germiyanoglu.android.findl.activity;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +27,7 @@ import com.germiyanoglu.android.findl.adapter.FavoriteLocationListItemAdapter;
 import com.germiyanoglu.android.findl.bottomnavigationmenu.BottomNavigationBar;
 import com.germiyanoglu.android.findl.data.LocationDetailContract;
 import com.germiyanoglu.android.findl.modal.Location;
+import com.germiyanoglu.android.findl.widget.FavoriteLocationProvider;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -66,6 +70,16 @@ public class FavoriteLocationActivity extends AppCompatActivity implements Loade
         // TODO : 284) Initialize loader Manager
         getSupportLoaderManager().initLoader(FAVOURITE_LOCATION_DETAIL_LOADER, null,
                 FavoriteLocationActivity.this);
+
+
+        // TODO 317 ) Updating Widget
+        Intent intent = new Intent(this,FavoriteLocationProvider.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        ComponentName thisWidget = new ComponentName(getApplicationContext(), FavoriteLocationProvider.class);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        sendBroadcast(intent);
     }
 
 

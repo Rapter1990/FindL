@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'androidKey'
             keyPassword 'ippavlova'
-            storeFile file('${rootDir}/android.jks')
+            storeFile file('C:/Users/user/Desktop/android/android.jks')
             storePassword 'lezley'
         }
     }

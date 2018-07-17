@@ -311,6 +311,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
                 ComponentName thisWidget = new ComponentName(getActivity(), FavoriteLocationProvider.class);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.favorite_location_widget_list_view);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
                 getActivity().sendBroadcast(intent);
 

@@ -171,5 +171,9 @@
     <string name="location_distance_start">~ </string>
     <string name="location_distance_end"> Km</string>
 
+    <string name="location_distance_description">~ 1.0 Km</string>
+    <string name="location_distance_type">Location Type</string>
+    <string name="location_distance_address">Location Address</string>
+    <string name="location_distance_status">Locaiton Status</string>
 
 </resources>

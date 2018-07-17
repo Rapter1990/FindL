@@ -107,6 +107,7 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
         }
 
 
+
         super.onReceive(context, intent);
 
 

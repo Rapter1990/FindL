@@ -43,7 +43,35 @@ public class FavoriteLocationAdapter implements RemoteViewsService.RemoteViewsFa
 
     @Override
     public void onDataSetChanged() {
+        if (mCursor != null) {
+            mCursor.close();
+        }
 
+        final long identityToken = Binder.clearCallingIdentity();
+
+        String[] projection = {
+                LocationDetailContract.LocationDetailEntry._ID,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ID,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LATITUDE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_LONGITUDE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_NAME,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_OPENING_HOUR_STATUS,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_RATING,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_ADDRESS,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_PHONE_NUMBER,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_WEBSITE,
+                LocationDetailContract.LocationDetailEntry.COLUMN_LOCATION_SHARE_LINK
+        };
+
+        mCursor = mContext.getContentResolver().query(
+                LocationDetailContract.LocationDetailEntry.CONTENT_URI,
+                projection,
+                null,
+                null,
+                null
+        );
+
+        Binder.restoreCallingIdentity(identityToken);
     }
 
     @Override

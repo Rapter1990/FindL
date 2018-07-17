@@ -308,12 +308,7 @@ public class LocationInformationAbout extends Fragment implements OnMapReadyCall
                 // TODO 317 ) Updating Widget
                 Intent intent = new Intent(getActivity(),FavoriteLocationProvider.class);
                 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-                ComponentName thisWidget = new ComponentName(getActivity(), FavoriteLocationProvider.class);
-                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.favorite_location_widget_list_view);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-                getActivity().sendBroadcast(intent);
+
 
                 final Bitmap FavoriteImageviewBitmap = ((BitmapDrawable)mFavoriteIcon.getDrawable()).getBitmap();
                 Drawable myDrawable = getResources().getDrawable(R.drawable.ic_favorite_white_border);

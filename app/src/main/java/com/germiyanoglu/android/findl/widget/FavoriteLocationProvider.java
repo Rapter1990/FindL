@@ -100,6 +100,9 @@ public class FavoriteLocationProvider extends AppWidgetProvider {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
             ComponentName thisWidget = new ComponentName(context.getApplicationContext(), FavoriteLocationProvider.class);
             int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+            for (int appWidgetId : appWidgetIds) {
+                updateAppWidget(context, appWidgetManager, appWidgetId);
+            }
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds,R.id.favorite_location_widget_list_view);
         }
 
